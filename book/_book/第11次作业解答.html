@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>11 第11次作业解答 | 统计计算作业汇总</title>
+  <meta name="description" content="这是用R的bookdown功能制作中文图书的模板，输出格式为bookdown::gitbook和bookdown::pdf_book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="11 第11次作业解答 | 统计计算作业汇总" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="这是用R的bookdown功能制作中文图书的模板，输出格式为bookdown::gitbook和bookdown::pdf_book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="11 第11次作业解答 | 统计计算作业汇总" />
+  
+  <meta name="twitter:description" content="这是用R的bookdown功能制作中文图书的模板，输出格式为bookdown::gitbook和bookdown::pdf_book." />
+  
+
+<meta name="author" content="兰敬国" />
+
+
+<meta name="date" content="2021-12-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="第10次作业解答.html"/>
+
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","output/SVG"],
+  extensions: ["tex2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+   src="../../../MathJax/MathJax.js">
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>简介</a></li>
+<li class="chapter" data-level="1" data-path="第1次作业解答.html"><a href="第1次作业解答.html"><i class="fa fa-check"></i><b>1</b> 第1次作业解答</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="第1次作业解答.html"><a href="第1次作业解答.html#question"><i class="fa fa-check"></i><b>1.1</b> Question</a></li>
+<li class="chapter" data-level="1.2" data-path="第1次作业解答.html"><a href="第1次作业解答.html#answer"><i class="fa fa-check"></i><b>1.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="第1次作业解答.html"><a href="第1次作业解答.html#texts"><i class="fa fa-check"></i><b>1.2.1</b> Texts</a></li>
+<li class="chapter" data-level="1.2.2" data-path="第1次作业解答.html"><a href="第1次作业解答.html#figures"><i class="fa fa-check"></i><b>1.2.2</b> Figures</a></li>
+<li class="chapter" data-level="1.2.3" data-path="第1次作业解答.html"><a href="第1次作业解答.html#ggplot2"><i class="fa fa-check"></i><b>1.2.3</b> ggplot2</a></li>
+<li class="chapter" data-level="1.2.4" data-path="第1次作业解答.html"><a href="第1次作业解答.html#tables"><i class="fa fa-check"></i><b>1.2.4</b> Tables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="第2次作业解答.html"><a href="第2次作业解答.html"><i class="fa fa-check"></i><b>2</b> 第2次作业解答</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="第2次作业解答.html"><a href="第2次作业解答.html#question-1"><i class="fa fa-check"></i><b>2.1</b> Question</a></li>
+<li class="chapter" data-level="2.2" data-path="第2次作业解答.html"><a href="第2次作业解答.html#answer-1"><i class="fa fa-check"></i><b>2.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="第2次作业解答.html"><a href="第2次作业解答.html#section"><i class="fa fa-check"></i><b>2.2.1</b> 3.4</a></li>
+<li class="chapter" data-level="2.2.2" data-path="第2次作业解答.html"><a href="第2次作业解答.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 3.11</a></li>
+<li class="chapter" data-level="2.2.3" data-path="第2次作业解答.html"><a href="第2次作业解答.html#section-2"><i class="fa fa-check"></i><b>2.2.3</b> 3.20</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="第3次作业解答.html"><a href="第3次作业解答.html"><i class="fa fa-check"></i><b>3</b> 第3次作业解答</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="第3次作业解答.html"><a href="第3次作业解答.html#question-2"><i class="fa fa-check"></i><b>3.1</b> Question</a></li>
+<li class="chapter" data-level="3.2" data-path="第3次作业解答.html"><a href="第3次作业解答.html#answer-2"><i class="fa fa-check"></i><b>3.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-3"><i class="fa fa-check"></i><b>3.2.1</b> 5.4</a></li>
+<li class="chapter" data-level="3.2.2" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-4"><i class="fa fa-check"></i><b>3.2.2</b> 5.9</a></li>
+<li class="chapter" data-level="3.2.3" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-5"><i class="fa fa-check"></i><b>3.2.3</b> 5.13</a></li>
+<li class="chapter" data-level="3.2.4" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-6"><i class="fa fa-check"></i><b>3.2.4</b> 5.14</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="第4次作业解答.html"><a href="第4次作业解答.html"><i class="fa fa-check"></i><b>4</b> 第4次作业解答</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="第4次作业解答.html"><a href="第4次作业解答.html#question-3"><i class="fa fa-check"></i><b>4.1</b> Question</a></li>
+<li class="chapter" data-level="4.2" data-path="第4次作业解答.html"><a href="第4次作业解答.html#answer-3"><i class="fa fa-check"></i><b>4.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="第4次作业解答.html"><a href="第4次作业解答.html#section-7"><i class="fa fa-check"></i><b>4.2.1</b> 6.5</a></li>
+<li class="chapter" data-level="4.2.2" data-path="第4次作业解答.html"><a href="第4次作业解答.html#a"><i class="fa fa-check"></i><b>4.2.2</b> 6.A</a></li>
+<li class="chapter" data-level="4.2.3" data-path="第4次作业解答.html"><a href="第4次作业解答.html#discussion"><i class="fa fa-check"></i><b>4.2.3</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="第5次作业解答.html"><a href="第5次作业解答.html"><i class="fa fa-check"></i><b>5</b> 第5次作业解答</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="第5次作业解答.html"><a href="第5次作业解答.html#question-4"><i class="fa fa-check"></i><b>5.1</b> Question</a></li>
+<li class="chapter" data-level="5.2" data-path="第5次作业解答.html"><a href="第5次作业解答.html#answer-4"><i class="fa fa-check"></i><b>5.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="第5次作业解答.html"><a href="第5次作业解答.html#多元正态性的偏度检验6.8"><i class="fa fa-check"></i><b>5.2.1</b> 多元正态性的偏度检验(6.8)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="第5次作业解答.html"><a href="第5次作业解答.html#多元正态性偏度检验的功效6.10"><i class="fa fa-check"></i><b>5.2.2</b> 多元正态性偏度检验的功效(6.10)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="第6次作业解答.html"><a href="第6次作业解答.html"><i class="fa fa-check"></i><b>6</b> 第6次作业解答</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="第6次作业解答.html"><a href="第6次作业解答.html#question-5"><i class="fa fa-check"></i><b>6.1</b> Question</a></li>
+<li class="chapter" data-level="6.2" data-path="第6次作业解答.html"><a href="第6次作业解答.html#answer-5"><i class="fa fa-check"></i><b>6.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="第6次作业解答.html"><a href="第6次作业解答.html#section-8"><i class="fa fa-check"></i><b>6.2.1</b> 7.7, 7.8, 7.9</a></li>
+<li class="chapter" data-level="6.2.2" data-path="第6次作业解答.html"><a href="第6次作业解答.html#b"><i class="fa fa-check"></i><b>6.2.2</b> 7.B</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="第7次作业解答.html"><a href="第7次作业解答.html"><i class="fa fa-check"></i><b>7</b> 第7次作业解答</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="第7次作业解答.html"><a href="第7次作业解答.html#question-6"><i class="fa fa-check"></i><b>7.1</b> Question</a></li>
+<li class="chapter" data-level="7.2" data-path="第7次作业解答.html"><a href="第7次作业解答.html#answer-6"><i class="fa fa-check"></i><b>7.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="第7次作业解答.html"><a href="第7次作业解答.html#section-9"><i class="fa fa-check"></i><b>7.2.1</b> 8.2</a></li>
+<li class="chapter" data-level="7.2.2" data-path="第7次作业解答.html"><a href="第7次作业解答.html#discussion-1"><i class="fa fa-check"></i><b>7.2.2</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="第7次作业解答.html"><a href="第7次作业解答.html#unequal-variances-and-unequal-expectations"><i class="fa fa-check"></i><b>7.3</b> Unequal variances and unequal expectations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="第8次作业解答.html"><a href="第8次作业解答.html"><i class="fa fa-check"></i><b>8</b> 第8次作业解答</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="第8次作业解答.html"><a href="第8次作业解答.html#question-7"><i class="fa fa-check"></i><b>8.1</b> Question</a></li>
+<li class="chapter" data-level="8.2" data-path="第8次作业解答.html"><a href="第8次作业解答.html#answer-7"><i class="fa fa-check"></i><b>8.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="第8次作业解答.html"><a href="第8次作业解答.html#section-10"><i class="fa fa-check"></i><b>8.2.1</b> 9.3</a></li>
+<li class="chapter" data-level="8.2.2" data-path="第8次作业解答.html"><a href="第8次作业解答.html#section-11"><i class="fa fa-check"></i><b>8.2.2</b> 9.8</a></li>
+<li class="chapter" data-level="8.2.3" data-path="第8次作业解答.html"><a href="第8次作业解答.html#discussion-2"><i class="fa fa-check"></i><b>8.2.3</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="第9次作业解答.html"><a href="第9次作业解答.html"><i class="fa fa-check"></i><b>9</b> 第9次作业解答</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="第9次作业解答.html"><a href="第9次作业解答.html#question-8"><i class="fa fa-check"></i><b>9.1</b> Question</a></li>
+<li class="chapter" data-level="9.2" data-path="第9次作业解答.html"><a href="第9次作业解答.html#answer-8"><i class="fa fa-check"></i><b>9.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="第9次作业解答.html"><a href="第9次作业解答.html#section-14"><i class="fa fa-check"></i><b>9.2.1</b> 11.3</a></li>
+<li class="chapter" data-level="9.2.2" data-path="第9次作业解答.html"><a href="第9次作业解答.html#section-15"><i class="fa fa-check"></i><b>9.2.2</b> 11.5</a></li>
+<li class="chapter" data-level="9.2.3" data-path="第9次作业解答.html"><a href="第9次作业解答.html#discussion-3"><i class="fa fa-check"></i><b>9.2.3</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="第10次作业解答.html"><a href="第10次作业解答.html"><i class="fa fa-check"></i><b>10</b> 第10次作业解答</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="第10次作业解答.html"><a href="第10次作业解答.html#question-9"><i class="fa fa-check"></i><b>10.1</b> Question</a></li>
+<li class="chapter" data-level="10.2" data-path="第10次作业解答.html"><a href="第10次作业解答.html#answer-9"><i class="fa fa-check"></i><b>10.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p204-1"><i class="fa fa-check"></i><b>10.2.1</b> P204-1</a></li>
+<li class="chapter" data-level="10.2.2" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p204-5"><i class="fa fa-check"></i><b>10.2.2</b> P204-5</a></li>
+<li class="chapter" data-level="10.2.3" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p214-1"><i class="fa fa-check"></i><b>10.2.3</b> P214-1</a></li>
+<li class="chapter" data-level="10.2.4" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p214-7"><i class="fa fa-check"></i><b>10.2.4</b> P214-7</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="第11次作业解答.html"><a href="第11次作业解答.html"><i class="fa fa-check"></i><b>11</b> 第11次作业解答</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="第11次作业解答.html"><a href="第11次作业解答.html#question-10"><i class="fa fa-check"></i><b>11.1</b> Question</a></li>
+<li class="chapter" data-level="11.2" data-path="第11次作业解答.html"><a href="第11次作业解答.html#answer-10"><i class="fa fa-check"></i><b>11.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="第11次作业解答.html"><a href="第11次作业解答.html#gibbs-in-r"><i class="fa fa-check"></i><b>11.2.1</b> Gibbs in R</a></li>
+<li class="chapter" data-level="11.2.2" data-path="第11次作业解答.html"><a href="第11次作业解答.html#gibbs-in-c"><i class="fa fa-check"></i><b>11.2.2</b> Gibbs in C</a></li>
+<li class="chapter" data-level="11.2.3" data-path="第11次作业解答.html"><a href="第11次作业解答.html#qq-plot"><i class="fa fa-check"></i><b>11.2.3</b> QQ plot</a></li>
+<li class="chapter" data-level="11.2.4" data-path="第11次作业解答.html"><a href="第11次作业解答.html#time"><i class="fa fa-check"></i><b>11.2.4</b> Time</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计计算作业汇总</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="第11次作业解答" class="section level1" number="11">
+<h1><span class="header-section-number">11</span> 第11次作业解答</h1>
+<div id="question-10" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> Question</h2>
+<p>Write an Rcpp function for Exercise 9.8 (page 278, Statistical Computing with R).</p>
+<ul>
+<li>Compare the corresponding generated random numbers with pure R language using the function “qqplot”.</li>
+<li>Campare the computation time of the two functions with the function “microbenchmark”.</li>
+<li>Comments your results.</li>
+</ul>
+</div>
+<div id="answer-10" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> Answer</h2>
+<p>This example appears in <span class="math inline">\([40]\)</span>. Consider the bivariate density
+<span class="math display">\[
+f(x, y) \propto\left(\begin{array}{l}
+n \\
+x
+\end{array}\right) y^{x+a-1}(1-y)^{n-x+b-1}, \quad x=0,1, \ldots, n, 0 \leq y \leq 1
+\]</span>
+It can be shown (see e.g. [23]) that for fixed <span class="math inline">\(a, b, n\)</span>, the conditional distributions are Binomial <span class="math inline">\((n, y)\)</span> and Beta <span class="math inline">\((x+a, n-x+b)\)</span>. Use the Gibbs sampler to generate a chain with target joint density <span class="math inline">\(f(x, y)\)</span>.</p>
+<div id="gibbs-in-r" class="section level3" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> Gibbs in R</h3>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="第11次作业解答.html#cb126-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb126-2"><a href="第11次作业解答.html#cb126-2" aria-hidden="true" tabindex="-1"></a>b<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb126-3"><a href="第11次作业解答.html#cb126-3" aria-hidden="true" tabindex="-1"></a>N<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb126-4"><a href="第11次作业解答.html#cb126-4" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">25</span></span>
+<span id="cb126-5"><a href="第11次作业解答.html#cb126-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-6"><a href="第11次作业解答.html#cb126-6" aria-hidden="true" tabindex="-1"></a>gibbsR<span class="ot">=</span><span class="cf">function</span>(a,b,n,N){</span>
+<span id="cb126-7"><a href="第11次作业解答.html#cb126-7" aria-hidden="true" tabindex="-1"></a>  X<span class="ot">=</span><span class="fu">matrix</span>(<span class="dv">0</span>, N, <span class="dv">2</span>)  <span class="co">#样本阵</span></span>
+<span id="cb126-8"><a href="第11次作业解答.html#cb126-8" aria-hidden="true" tabindex="-1"></a>  X[<span class="dv">1</span>,]<span class="ot">=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.5</span>)</span>
+<span id="cb126-9"><a href="第11次作业解答.html#cb126-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>N){</span>
+<span id="cb126-10"><a href="第11次作业解答.html#cb126-10" aria-hidden="true" tabindex="-1"></a>    X2<span class="ot">=</span> X[i<span class="dv">-1</span>, <span class="dv">2</span>]</span>
+<span id="cb126-11"><a href="第11次作业解答.html#cb126-11" aria-hidden="true" tabindex="-1"></a>    X[i,<span class="dv">1</span>]<span class="ot">=</span><span class="fu">rbinom</span>(<span class="dv">1</span>,<span class="dv">25</span>,X2)</span>
+<span id="cb126-12"><a href="第11次作业解答.html#cb126-12" aria-hidden="true" tabindex="-1"></a>    X1<span class="ot">=</span>X[i,<span class="dv">1</span>]</span>
+<span id="cb126-13"><a href="第11次作业解答.html#cb126-13" aria-hidden="true" tabindex="-1"></a>    X[i,<span class="dv">2</span>]<span class="ot">=</span><span class="fu">rbeta</span>(<span class="dv">1</span>,X1<span class="sc">+</span>a,<span class="dv">25</span><span class="sc">-</span>X1<span class="sc">+</span>b)</span>
+<span id="cb126-14"><a href="第11次作业解答.html#cb126-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb126-15"><a href="第11次作业解答.html#cb126-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(X)</span>
+<span id="cb126-16"><a href="第11次作业解答.html#cb126-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb126-17"><a href="第11次作业解答.html#cb126-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-18"><a href="第11次作业解答.html#cb126-18" aria-hidden="true" tabindex="-1"></a>X<span class="ot">=</span><span class="fu">gibbsR</span>(a,b,n,N)</span>
+<span id="cb126-19"><a href="第11次作业解答.html#cb126-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-20"><a href="第11次作业解答.html#cb126-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X[,<span class="dv">1</span>],X[,<span class="dv">2</span>],<span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>,<span class="at">main =</span> <span class="st">&quot;gibbsR&quot;</span>)</span></code></pre></div>
+<p><img src="11_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="gibbs-in-c" class="section level3" number="11.2.2">
+<h3><span class="header-section-number">11.2.2</span> Gibbs in C</h3>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="第11次作业解答.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rcpp)</span>
+<span id="cb127-2"><a href="第11次作业解答.html#cb127-2" aria-hidden="true" tabindex="-1"></a>dir<span class="ot">=</span><span class="st">&quot;D:/Software/Github/2021Fall/Statistical_Computing/Homework/hw10/&quot;</span></span>
+<span id="cb127-3"><a href="第11次作业解答.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sourceCpp</span>(<span class="fu">paste0</span>(dir,<span class="st">&quot;R.cpp&quot;</span>))</span>
+<span id="cb127-4"><a href="第11次作业解答.html#cb127-4" aria-hidden="true" tabindex="-1"></a>Xc<span class="ot">=</span><span class="fu">gibbsC</span>(a,b,n,N)</span>
+<span id="cb127-5"><a href="第11次作业解答.html#cb127-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Xc[,<span class="dv">1</span>],Xc[,<span class="dv">2</span>],<span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>,<span class="at">main=</span><span class="st">&quot;gibbsC&quot;</span>)</span></code></pre></div>
+</div>
+<div id="qq-plot" class="section level3" number="11.2.3">
+<h3><span class="header-section-number">11.2.3</span> QQ plot</h3>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="第11次作业解答.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqplot</span>(X[,<span class="dv">1</span>],Xc[,<span class="dv">1</span>],<span class="at">xlab =</span> <span class="st">&quot;gibbsR&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;gibbsC&quot;</span>,<span class="at">main=</span><span class="st">&quot;第1维变量QQ图&quot;</span>)</span>
+<span id="cb128-2"><a href="第11次作业解答.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb128-3"><a href="第11次作业解答.html#cb128-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-4"><a href="第11次作业解答.html#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqplot</span>(X[,<span class="dv">2</span>],Xc[,<span class="dv">2</span>], <span class="at">xlab =</span> <span class="st">&quot;gibbsR&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;gibbsC&quot;</span>,<span class="at">main=</span><span class="st">&quot;第2维变量QQ图&quot;</span>)</span>
+<span id="cb128-5"><a href="第11次作业解答.html#cb128-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<blockquote>
+<p>Rcpp和R产生的随机数的QQ图基本在一条直线上, 所以产生的随机数的分布基本一致。</p>
+</blockquote>
+</div>
+<div id="time" class="section level3" number="11.2.4">
+<h3><span class="header-section-number">11.2.4</span> Time</h3>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="第11次作业解答.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb129-2"><a href="第11次作业解答.html#cb129-2" aria-hidden="true" tabindex="-1"></a>ts<span class="ot">=</span><span class="fu">microbenchmark</span>(<span class="at">gibbR=</span><span class="fu">gibbsR</span>(a,b,n,N), <span class="at">gibbC=</span><span class="fu">gibbsC</span>(a,b,N,n))</span>
+<span id="cb129-3"><a href="第11次作业解答.html#cb129-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ts)[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>)]</span></code></pre></div>
+<blockquote>
+<p>Rcpp运行的平均时间是20ms左右, 但R里运行的时间50000ms左右,Rcpp的效率远高于R</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="第10次作业解答.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CBook.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

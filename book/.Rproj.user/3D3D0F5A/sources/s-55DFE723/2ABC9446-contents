@@ -1,0 +1,168 @@
+# 第9次作业解答
+
+## Question
+
++  Exercises 11.3 and 11.5 (pages 353-354, Statistical Computing with R).
++  Suppose $T_{1}, \ldots, T_{n}$ are i.i.d. samples drawn from the exponential distribution with expectation $\lambda$. Those values greater than $\tau$ are not observed due to right censorship, so that the observed values are $Y_{i}=T_{i} I\left(T_{i} \leq \tau\right)+\tau I\left(T_{i}>\tau\right), i=1, \ldots, n$. Suppose $\tau=1$ and the observed $Y_{i}$ values are as follows:$$0.54,0.48,0.33,0.43,1.00,1.00,0.91,1.00,0.21,0.85$$
+Use the E-M algorithm to estimate $\lambda$, compare your result with the observed data MLE (note: $Y_{i}$ follows a mixture distribution).
+
+
+## Answer
+
+### 11.3
+
+(a) Write a function to compute the $k^{t h}$ term in
+$$
+\sum_{k=0}^{\infty} \frac{(-1)^{k}}{k ! 2^{k}} \frac{\|a\|^{2 k+2}}{(2 k+1)(2 k+2)} \frac{\Gamma\left(\frac{d+1}{2}\right) \Gamma\left(k+\frac{3}{2}\right)}{\Gamma\left(k+\frac{d}{2}+1\right)}
+$$
+where $d \geq 1$ is an integer, $a$ is a vector in $\mathbb{R}^{d}$, and $\|\cdot\|$ denotes the Euclidean norm. Perform the arithmetic so that the coefficients can be computed for (almost) arbitrarily large $k$ and $d$. (This sum converges for all $a \in \mathbb{R}^{d}$ ).
+
+(b) Modify the function so that it computes and returns the sum.
+
+(c) Evaluate the sum when $a=(1,2)^{T}$.
+
+解:
+
+(a)
+```{r}
+thek <- function(k, a, d){
+  (-1)^k/exp(lgamma(k+1)+k*log(2)) * exp((k+1)*log(sum(a^2))-log(2*k+1)-log(2*k+2)) * exp(lgamma((d+1)/2)+lgamma(k+1.5)-lgamma(k+d/2+1))#用到了gamma函数和阶乘的恒等式
+}
+```
+(b)
+```{r}
+sumk <- function(a, d){
+  k <- 0
+  s <- 0
+  while(abs(thek(k, a, d))>1e-5){#tolerance
+    s <- s+thek(k, a, d)
+    k <- k+1
+  }
+  return(s)
+}
+```
+(c)
+```{r}
+a <- c(1,2)
+d <- length(a)
+s <- sumk(a,d)
+paste("The sum =", s)
+```
+
+### 11.5
+ 
+Write a function to solve the equation
+
+$$
+\begin{gathered}
+\frac{2 \Gamma\left(\frac{k}{2}\right)}{\sqrt{\pi(k-1)} \Gamma\left(\frac{k-1}{2}\right)} \int_{0}^{c_{k-1}}\left(1+\frac{u^{2}}{k-1}\right)^{-k / 2} d u \\
+=\frac{2 \Gamma\left(\frac{k+1}{2}\right)}{\sqrt{\pi k} \Gamma\left(\frac{k}{2}\right)} \int_{0}^{c_{k}}\left(1+\frac{u^{2}}{k}\right)^{-(k+1) / 2} d u
+\end{gathered}
+$$
+
+for $a$, where
+
+$$
+c_{k}=\sqrt{\frac{a^{2} k}{k+1-a^{2}}}
+$$
+
+Compare the solutions with the points $A(k)$ in Exercise 11.4.
+
+
+解:
+
+```{r}
+k <- c(4:25, 100, 500, 1000)
+###11.5
+beijif <- function(u, kf){
+  (1+u^2/kf)^(-(kf+1)/2)
+}
+g <- function(a, kg){
+  ckl <- sqrt(a^2*(kg-1)/(kg-a^2))
+  LHS <- 2/sqrt(pi*(kg-1)) * exp(lgamma(kg/2)-lgamma((kg-1)/2)) * integrate(beijif, lower = 0, upper = ckl, kf=kg-1)$value
+  ckr <- sqrt(a^2*kg/(kg+1-a^2))
+  RHS <-2/sqrt(pi*kg) * exp(lgamma((kg+1)/2)-lgamma(kg/2)) * integrate(beijif, lower = 0, upper = ckr, kf=kg)$value
+  LHS-RHS
+}
+
+solution5 <- numeric(length(k))
+for (i in 1:length(k)) {
+  solution5[i] <- uniroot(g, c(1,2), kg=k[i])$root
+}
+
+###11.4
+h <- function (a,kh) {
+  (1-pt(sqrt(a^2*(kh-1) / (kh-a^2)), df=kh-1)) - (1-pt(sqrt(a^2*kh / (kh+1-a^2)), df=kh))
+}
+
+solution4 <- numeric(length(k))
+for (i in 1:length(k)) {
+  solution4[i] <- uniroot(h, c(1,2), kh=k[i])$root
+}
+
+###Compare
+print(cbind(k=k, exercice4=solution4, exercice4=solution5))
+```
+
+两种方法结果完全一致。
+
+
+### Discussion
+Suppose $T_{1}, \ldots, T_{n}$ are i.i.d. samples drawn from the exponential distribution with expectation $\lambda$. Those values greater than $\tau$ are not observed due to right censorship, so that the observed values are $Y_{i}=T_{i} I\left(T_{i} \leq \tau\right)+\tau I\left(T_{i}>\tau\right), i=1, \ldots, n$. Suppose $\tau=1$ and the observed $Y_{i}$ values are as follows:$$0.54,0.48,0.33,0.43,1.00,1.00,0.91,1.00,0.21,0.85$$
+Use the E-M algorithm to estimate $\lambda$, compare your result with the observed data MLE (note: $Y_{i}$ follows a mixture distribution).
+
+
+解:
+
+Observed data likelihood:
+$$L=\Pi_{i=1}^n\left(\frac{1}{\lambda} e^{-\frac{1}{\lambda} x_{i}}\right)^{k_{i}} \cdot\left(e^{-\frac{1}{\lambda} \tau}\right)^{1-k_{i}}$$
+$$\log L=n_{1} \cdot \log \frac{1}{\lambda}+\sum_{x_{i} \leq \tau}\left(-\frac{1}{\lambda} x_{i}\right)+n_{2} \cdot-\frac{1}{\lambda} \tau$$
+$$\frac{\partial \log L}{\partial\lambda}=n_{1} \cdot \left(-\frac{1}{\lambda}\right)+ \left(\sum_{x_{i} \leq \tau} \frac{1}{\lambda^2}x_{i}\right)+n_{2}\cdot\frac{1}{\lambda^2}  \tau$$
+$$\hat{\lambda}_{MLE}=\frac{\sum_{x_{i} \leq \tau} x_{i}+n_{2} \tau}{n_{1}}$$
+Complete data likelihood:
+$$L=\Pi_{i=1}^n \frac{1}{\lambda} e^{-\frac{1}{\lambda} x_{i}}$$ 
+$$\log L= n \cdot \log \frac{1}{\lambda}-\frac{1}{\lambda} \cdot  \Sigma_{x_{i} \leq \tau} x_{i}-\frac{1}{\lambda}  \Sigma_{x_{i} > \tau} x_{i}$$ 
+E-step:
+$$\mathbb{E}\log L=n \cdot \log \frac{1}{\lambda}-\frac{1}{\lambda} \cdot \Sigma_{x_{i} \leq \tau} x_{i}- \frac{1}{\lambda}n_{2}\left(\tau+\lambda_{0}\right)$$
+$$\frac{\partial \mathbb{E} \log L}{\partial \lambda}=n\cdot \left(-\frac{1}{\lambda}\right)+\frac{1}{\lambda^2}\cdot\Sigma_{x_{i} \leq \tau} x_{i}+\frac{1}{\lambda^2}\cdot n_{2}\left(\tau+\lambda_{0}\right)=0$$
+M-step:
+$$\lambda_1=\frac{\Sigma_{x_{i} \leq \tau} x_{i}+n_{2}\left(\tau+\lambda_{0}\right)}{n}$$
+$$\hat{\lambda}_{EM}=\frac{\sum_{x_{i} \leq \tau} x_{i}+n_{2} \tau}{n_{1}}$$
+
+```{r}
+data <- c(0.54,0.48,0.33,0.43,1.00,1.00,0.91,1.00,0.21,0.85)
+tau <- 1
+n <- length(data)
+n1 <- sum(data<tau)
+n2 <- n-n1
+lam0 <- 0
+lam1 <- 1#初始值
+
+
+i <- 1
+while (abs(lam0-lam1)>1e-10) {
+  lam0 <- lam1
+  # E step
+  E <- function(lam) n*log(1/lam)-1/lam*sum(data[data<tau])-n2/lam*(tau+lam0)
+  # M step
+  lam1 <- optimize(E, lower = 0, upper = 2, maximum = TRUE)$maximum
+}
+
+# MLE 
+# lam <- 1
+
+
+lik <- function(lam){
+  lik1 <- sapply(data[data<tau], function(x) {
+    dexp(x,rate=1/lam)
+  })
+  lik2 <- sapply(data[data==tau],function(x){
+    1-pexp(tau,rate = 1/lam)
+  })
+  prod(c(lik1,lik2))
+}
+MLE <- optimize(lik, lower = 0, upper = 2, maximum = TRUE)$maximum
+print(cbind(EM=lam1, MLE))
+```
+
+结果相差很小.

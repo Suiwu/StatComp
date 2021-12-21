@@ -1,0 +1,317 @@
+---
+title: "A-21055-2021-11-11"
+output: 
+  html_document: default
+  pdf_document: default
+---
+
+## Question
+
++ Exercies 9.3 and 9.8 (pages 277-278, Statistical Computating
+with R).
+
++ For each of the above exercise, use the Gelman-Rubin method
+to monitor convergence of the chain, and run the chain until it
+converges approximately to the target distribution according to
+$\hat R< 1.2 $
+
+
+
+## Answer
+
+### 9.3
+
+Use the Metropolis-Hastings sampler to generate random variables from a standard Cauchy distribution. Discard the first 1000 of the chain, and compare the deciles of the generated observations with the deciles of the standard Cauchy distribution (see qcauchy or qt with df=1). Recall that a Cauchy $(\theta, \eta)$ distribution has density function
+$$
+f(x)=\frac{1}{\theta \pi\left(1+[(x-\eta) / \theta]^{2}\right)}, \quad-\infty<x<\infty, \theta>0
+$$
+The standard Cauchy has the Cauchy $(\theta=1, \eta=0)$ density. (Note that the standard Cauchy density is equal to the Student $\mathrm{t}$ density with one degree of freedom.)
+
+```{r}
+set.seed(123)
+## standard Cauchy 
+f <- function(x) {
+  return(1/(pi*(1+x^2)))
+}
+
+m <- 10000
+x <- numeric(m)
+x[1] <- rnorm(1)
+k <- 0
+u <- runif(m)
+for (i in 2:m) {
+  xt <- x[i-1]
+  y <- rnorm(1, mean = xt)
+  num <- f(y) * dnorm(xt, mean = y)
+  den <- f(xt) * dnorm(y, mean = xt)
+  if (u[i] <= num/den) x[i] <- y else {
+    x[i] <- xt
+    k <- k+1 #y is rejected
+  }
+}
+
+
+## MC过程图
+plot(1:m, x, type="l", main="", ylab="x")
+b <- 1000
+y <- x[b:m]
+a <- ppoints(1000)
+Qc <- qcauchy(a) 
+Q <- quantile(x, a)
+
+
+## QQ图
+qqplot(Qc, Q, main="",xlim=c(-5,5),ylim=c(-5,5),xlab="Standard Cauchy Quantiles", ylab="Sample Quantiles")
+
+## 直方图
+hist(y, breaks="scott", main="", xlab="", freq=FALSE)
+lines(Qc, f(Qc))
+
+```
+
+
+### 9.8
+
+This example appears in [40]. Consider the bivariate density
+$$
+f(x, y) \propto\left(\begin{array}{l}
+n \\
+x
+\end{array}\right) y^{x+a-1}(1-y)^{n-x+b-1}, \quad x=0,1, \ldots, n, 0 \leq y \leq 1
+$$
+It can be shown (see e.g. $[23]$ ) that for fixed $a, b, n$, the conditional distributions are $\operatorname{Binomial}(n, y)$ and $\operatorname{Beta}(x+a, n-x+b)$. Use the Gibbs sampler to generate a chain with target joint density $f(x, y)$.
+
+```{r}
+set.seed(2)
+
+N <- 5000 #length of chain
+burn <- 1000 #burn-in length
+a <- 2
+b <- 3
+n <- 1000
+X <- matrix(0, N, 2) #the chain, a bivariate sample
+
+#initialize
+x0=2
+y0=0.5
+###### generate the chain #####
+X[1, ] <- c(x0,y0) #initialize
+for (i in 2:N) {
+  y <- X[i-1, 2]
+  X[i, 1] <- rbinom(1,size=n,prob = y)
+  x <- X[i, 1]
+  X[i, 2] <- rbeta(1,x+a,n-x+b)
+}
+lab <- burn + 1
+out <- X[lab:N, ]
+```
+
+```{r}
+cat("协方差矩阵\n")
+cov(out) ## 协方差矩阵
+
+cat("相关系数矩阵\n")
+cor(out) ## 相关系数矩阵
+plot(out, main="", cex=.5, xlab=bquote(X[1]),
+ylab=bquote(X[2]), ylim=range(out[,2]))  ## 分布图
+```
+
+
+
+
+### New
+
+For each of the above exercise, use the Gelman-Rubin method
+to monitor convergence of the chain, and run the chain until it
+converges approximately to the target distribution according to
+$\hat R< 1.2 $
+
+
+#### 9.3
+
+```{r}
+## 计算R_hat
+Gelman.Rubin <- function(psi) {
+  # psi[i,j] is the statistic psi(X[i,1:j])
+  # for chain in i-th row of X
+  psi <- as.matrix(psi)
+  n <- ncol(psi)
+  k <- nrow(psi)
+  psi.means <- rowMeans(psi) #row means
+  B <- n * var(psi.means) #between variance est.
+  psi.w <- apply(psi, 1, "var") #within variances
+  W <- mean(psi.w) #within est.
+  v.hat <- W*(n-1)/n + (B/n) #upper variance est.
+  r.hat <- v.hat / W #G-R statistic
+  return(r.hat)
+}
+
+```
+
+
+```{r}
+
+## 输出cauchy分布的马氏链
+cauchy.chain <- function(m, X1) {
+  f <- function(x) {
+    return(1/(pi*(1+x^2)))
+  }
+  x <- numeric(m)
+  x[1] <- X1
+  k <- 0
+  u <- runif(m)
+  for (i in 2:m) {
+    xt <- x[i-1]
+    y <- rnorm(1, mean = xt)
+    num <- f(y) * dnorm(xt, mean = y)
+    den <- f(xt) * dnorm(y, mean = xt)
+    if (u[i] <= num/den) x[i] <- y else {
+      x[i] <- xt
+      k <- k+1 #y is rejected
+    }
+  }
+  return(x)
+}
+```
+
+
+
+
+
+```{r}
+b=1000 ##断点
+n=15000 ## 马氏链长度
+k=4 ## 马氏链数目
+set.seed(11111)
+x0 <- rnorm(4) ## 四条链的初始值
+
+#generate the chains
+X <- matrix(0, nrow=k, ncol=n)
+for (i in 1:k)
+  X[i, ] <- cauchy.chain(n, x0[i])
+
+#compute diagnostic statistics
+psi <- t(apply(X, 1, cumsum))
+for (i in 1:nrow(psi))
+  psi[i,] <- psi[i,] / (1:ncol(psi))
+print(Gelman.Rubin(psi))
+
+#plot psi for the four chains
+par(mfrow=c(2,2))
+
+for (i in 1:k)
+  plot(psi[i, (b+1):n], type="l",xlab=i, ylab=bquote(psi))
+
+par(mfrow=c(1,1)) #restore default
+
+#plot the sequence of R-hat statistics
+rhat <- rep(0, n)
+for (j in (b+1):n)
+  rhat[j] <- Gelman.Rubin(psi[,1:j])
+
+plot(rhat[(b+1):n], type="l", xlab="", ylab="R")
+abline(h=1.2, lty=2)
+
+```
+
+输出结果很不稳定
+
+
+
+#### 9.8
+
+对于二元情况，二元随机向量收敛当且仅当每个分量的随机变量收敛，所以采取的方法是把两个分量分别输出得到两条马氏链，分别用GR方法检测
+
+```{r}
+## 输出二元马氏链
+bivariate.chain <- function(a,b,n,m, X1) {
+X <- matrix(0, m, 2) 
+X[1, ] <- X1 #initialize
+for (i in 2:m) {
+  y <- X[i-1, 2]
+  X[i, 1] <- rbinom(1,size=n,prob = y)
+  x <- X[i, 1]
+  X[i, 2] <- rbeta(1,x+a,n-x+b)
+}
+return(X)
+}
+
+## 参数值
+a=2
+b=2
+n=10
+m=15000  ## 马氏链长度
+k=4  ##马氏链数目
+b1=2000 ## 断点
+
+x=c(2,3,4,5)
+y=runif(k)
+x0=c(x,y)
+
+#generate the chains
+X =Y=matrix(0, nrow=k, ncol=m)
+for (i in 1:k){
+  X[i, ] <- bivariate.chain(a,b,n,m, x0[c(i,(i+k))])[,1]
+  Y[i, ] <- bivariate.chain(a,b,n,m, x0[c(i,(i+k))])[,2]
+}
+
+```
+
+
+这是$x$的变化情况
+
+```{r}
+#compute diagnostic statistics
+psi <- t(apply(X, 1, cumsum))
+for (i in 1:nrow(psi))
+  psi[i,] <- psi[i,] / (1:ncol(psi))
+print(Gelman.Rubin(psi))
+
+#plot psi for the four chains
+par(mfrow=c(2,2))
+
+for (i in 1:k)
+  plot(psi[i, (b1+1):m], type="l",xlab=i, ylab=bquote(psi))
+
+par(mfrow=c(1,1)) #restore default
+
+#plot the sequence of R-hat statistics
+rhat <- rep(0, m)
+for (j in (b1+1):m)
+rhat[j] <- Gelman.Rubin(psi[,1:j])
+  plot(rhat[(b1+1):m], type="l", xlab="", ylab="R")
+abline(h=1.2, lty=2)
+
+```
+
+
+这是$y$的变化情况
+
+```{r}
+#compute diagnostic statistics
+psi <- t(apply(Y, 1, cumsum))
+for (i in 1:nrow(psi))
+  psi[i,] <- psi[i,] / (1:ncol(psi))
+print(Gelman.Rubin(psi))
+
+#plot psi for the four chains
+par(mfrow=c(2,2))
+
+for (i in 1:k)
+  plot(psi[i, (b1+1):m], type="l",xlab=i, ylab=bquote(psi))
+
+par(mfrow=c(1,1)) #restore default
+
+#plot the sequence of R-hat statistics
+rhat <- rep(0, m)
+for (j in (b1+1):m)
+  rhat[j] <- Gelman.Rubin(psi[,1:j])
+plot(rhat[(b1+1):m], type="l", xlab="", ylab="R")
+abline(h=1.2, lty=2)
+```
+
+
+
+
+
+

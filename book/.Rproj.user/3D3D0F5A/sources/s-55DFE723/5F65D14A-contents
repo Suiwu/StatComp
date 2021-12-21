@@ -1,0 +1,214 @@
+# 第7次作业解答
+
+## Question
+
+Exercise 8.2 (page 242, Statistical Computating with R).
+
+Design experiments for evaluating the performance of the NN,
+energy, and ball methods in various situations.
+
++ Unequal variances and equal expectations
+
++ Unequal variances and unequal expectations
+
++ Non-normal distributions: t distribution with 1 df (heavy-tailed
+distribution), bimodel distribution (mixture of two normal
+distributions)
+
++ Unbalanced samples (say, 1 case versus 10 controls)
+
++ Note: The parameters should be chosen such that the powers
+are distinguishable (say, range from 0.3 to 0.8).
+
+## Answer
+
+### 8.2 
+Implement the bivariate Spearman rank correlation test for independence
+[255] as a permutation test. The Spearman rank correlation test statistic can
+be obtained from function cor with method = "spearman". Compare the
+achieved significance level of the permutation test with the p-value reported
+by cor.test on the same samples.
+
+#### Spearman rank correlation test
+
+```{r}
+Spearman_rank_test <- function(x, y, B = 1e4){
+  t0 = cor(x,y,method = "spearman")
+  perm = numeric(B)
+  z = c(x,y)
+  for(i in 1:B){
+    samp = sample(z)
+    perm[i] = cor(samp[1:length(x)], samp[(length(x)+1):length(z)], method = "spearman")
+  }
+  p_value = mean(abs(perm)>=abs(t0))
+  return(list(statistic = t0, 'p.value' = p_value))
+}
+```
+
+#### Independent case
+
+We generate 50 samples from $N(0,1)$ for $X$ and $Y$, respectively. We expect the p-value of the test is very large so that the null hypothesis would not be rejected.
+
+```{r}
+n = 50
+x = rnorm(n, 0, 1)
+y = rnorm(n, 0, 1)
+```
+
+
+```{r}
+Spearman_rank_test(x, y)
+cor.test(x, y, method = "spearman")
+```
+
+From the output of `Spearman_rank_test()` and `cor.test`, we can see the p-value of these two methods very close and both of them will not reject the null hypothesis, which mean two samples are independent.
+
+
+#### Dependent case
+
+Consider the data $X\sim N(0,1)$, $Y_i = X_i + \varepsilon_i$, where $\varepsilon_i\sim N(0,1)$. $X$ and $Y$ are highly dependent, we expect the p-value of the test is very small.
+
+
+```{r}
+n = 50
+x = rnorm(n, 0, 1)
+y = x + rnorm(n, 0, 1)
+```
+
+
+```{r}
+Spearman_rank_test(x, y)
+cor.test(x, y, method = "spearman")
+```
+
+
+From the output of `Spearman_rank_test()` and `cor.test`, we can see p-value of two methods are 0, which means we would reject the null hypothesis, i.e. two samples are not independent.
+
+
+### Discussion
+
+Design experiments for evaluating the performance of the NN,
+energy, and ball methods in various situations.
+
++ Unequal variances and equal expectations
+
++ Unequal variances and unequal expectations
+
++ Non-normal distributions: t distribution with 1 df (heavy-tailed
+distribution), bimodel distribution (mixture of two normal
+distributions)
+
++ Unbalanced samples (say, 1 case versus 10 controls)
+
++ Note: The parameters should be chosen such that the powers
+are distinguishable (say, range from 0.3 to 0.8).
+
+#### Unequal variances and equal expectations
+
+```{r}
+library(bootstrap)
+library(boot)
+library(RANN)
+library(energy)
+library(Ball)
+
+Tn <- function(z, ix, size, k = 3){
+  n1 = size[1]
+  n2 = size[2]
+  n = n1+n2
+  if(is.vector(z)) 
+    z = data.frame(z,0)
+  z = z[ix,]
+  NN = nn2(data=z, k = k+1)
+  b1 = NN$nn.idx[1:n1,-1]
+  b2 = NN$nn.idx[(n1+1):n,-1]
+  i1 = sum(b1<n1+0.5)
+  i2 = sum(b2>n1+0.5)
+  (i1+i2)/(k+n)
+}
+eqdist.nn <- function(z, size, k, R = R){
+  res = boot(data = z, statistic = Tn, R = R, sim = "permutation", size = size, k = k)
+  stat = c(res$t0, res$t)
+  p_val = mean(stat>stat[1])
+  return(p_val)
+}
+p_val <- function(x,y, R = 999, k = 3){
+  x = as.matrix(x)
+  y = as.matrix(y)
+  n1 = nrow(x)
+  n2 = nrow(y)
+  N = c(n1,n2)
+  z = rbind(x,y)
+  p_nn = eqdist.nn(z, size = N, k, R = R)
+  p_energy = eqdist.etest(z,sizes=N,R = R)$p.value
+  p_ball = bd.test(x=x,y=y,num.permutations = R)$p.value
+  names(p_ball) = "ball"
+  return(c(NN = p_nn, energy = p_energy, p_ball))
+}
+```
+
+
+#### Unequal variances and equal expectations
+
+Generate $X_1,\cdots,X_{50}$ from $N(0,1)$, $Y_1,\cdots,Y_{50}$ from $N(0,1.7^2)$, $X$ and $Y$ have equal mean and unequal variance.
+
+```{r}
+res = replicate(200, expr = {
+  x = rnorm(50)
+  y = rnorm(50, 0, 1.7)
+  p_val(x, y)
+})
+alpha = 0.05
+apply(res, 1, function(x)mean(x<alpha))
+```
+
+
+## Unequal variances and unequal expectations
+
+
+Generate $X_1,\cdots,X_{40}$ from $N(1,1)$, $Y_1,\cdots,Y_{40}$ from $N(0.6,2^2)$, $X$ and $Y$ have unequal mean and unequal variance.
+
+```{r}
+res = replicate(200, expr = {
+  x = rnorm(40, 1, 1)
+  y = rnorm(40, 0.6, 2)
+  p_val(x, y)
+})
+alpha = 0.05
+apply(res, 1, function(x)mean(x<alpha))
+```
+
+
+
+#### Non-normal distributions
+
+Generate $X_1,\cdots, X_{40}$ from unifrom distribution U(-3,3), generate $Y_1,\cdots, Y_{60}$ from 
+
+```{r}
+res = replicate(200, expr = {
+  x = runif(40, -3, 3)
+  y = rt(60, 5)
+  p_val(x, y)
+})
+alpha = 0.05
+apply(res, 1, function(x) mean(x<alpha))
+```
+
+
+#### Unbalanced samples
+
+
+```{r}
+res = replicate(200, expr = {
+  x = runif(30, -3, 3)
+  y = rt(300, 5)
+  p_val(x, y)
+})
+alpha = 0.05
+apply(res, 1, function(x) mean(x<alpha))
+```
+
+
+
+
+

@@ -1,0 +1,8 @@
+[1,"Installing 'bootstrap' ...\r\n"]
+[1,"\r\n"]
+[2,"ÊÔ¿ªURL¡¯https://mirrors.tuna.tsinghua.edu.cn/CRAN/bin/windows/contrib/4.1/bootstrap_2019.6.zip'\r\n"]
+[1,"package 'bootstrap' successfully unpacked and MD5 sums checked\r\n"]
+[1,"\r\n"]
+[1,"The downloaded binary packages are in\r\n"]
+[1,"\tC:\\Users\\ustc\\AppData\\Local\\Temp\\Rtmp08Ioaq\\downloaded_packages\r\n"]
+[2,"Content type 'application/zip' length 124922 bytes (121 KB)\r\n==================================================\r\ndownloaded 121 KB\r\n\r\n\r\n\r\n<U+2714> Package 'bootstrap' successfully installed.\r\nWarning message:\r\nIn parse(file = script, keep.source = TRUE, encoding = encoding) :\r\n  argument encoding=\"UTF-8\" is ignored in MBCS locales\r\n"]

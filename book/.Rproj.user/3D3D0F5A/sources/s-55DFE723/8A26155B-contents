@@ -1,0 +1,213 @@
+---
+title: "A-21085-2021-11-25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 11.1.2
+
+## 1
+
+Why are the following two invocations of lapply() equivalent?
+
+```{r}
+trims <- c(0, 0.1, 0.2, 0.5)
+x <- rcauchy(100)
+```
+
+```{r}
+lapply(trims, function(trims) trims+3)
+```
+
+
+
+```{r}
+lapply(trims, function(trim) mean(x, trim = trim))
+```
+
+对于第一种方法，构造了一个函数，该函数是用来计算$x$和传入的参数trim的均值，而lapply函数会对trims中的每一项计算上述均值。
+
+```{r}
+lapply(trims, mean, x = x)
+```
+
+对于第二种方法中，均值函数即为对括号内第一项和第三项求均值，而lapply函数可以对trims中的每一项执行，因此与前面的方法一致。
+
+
+## 5
+
+For each model in the previous two exercises, extract $R^2$ using
+the function below.
+
+```{r}
+rsq <- function(mod) summary(mod)$r.squared
+```
+
+
+### 3
+
+用lapply对formulas中的每个模型进行回归，并记返回的模型列表为models：
+
+```{r}
+data(mtcars)
+formulas <- list(
+  mpg ~ disp,
+  mpg ~ I(1 / disp),
+  mpg ~ disp + wt,
+  mpg ~ I(1 / disp) + wt
+)
+models <- lapply(formulas, function(formula) lm(formula, mtcars))
+```
+
+下面再利用rsq函数提取每个$R^2$：
+
+```{r}
+lapply(models, function(model) rsq(model))
+```
+
+
+### 4
+
+先对mtcars样本重抽样
+```{r}
+data("mtcars")
+# 对mtcars样本重抽样10次的样本列表
+bootstraps <- lapply(1:10, function(i) {
+  rows <- sample(1:nrow(mtcars), rep = TRUE)
+  mtcars[rows, ]
+})
+```
+
+
+#### for loop
+
+(1) 利用for loop对每个样本进行线性拟合得到模型列表models_loop
+
+```{r}
+models_loop <- list()
+for(i in 1:10){
+  model <- lm(mpg ~ disp, data = bootstraps[[i]])
+  models_loop <- c(models_loop, list(model))
+}
+```
+
+(2) 利用rsq函数提取每个$R^2$
+
+```{r}
+lapply(models_loop, function(model) rsq(model))
+```
+
+#### lapply
+
+(1) 利用lapply对每个样本进行线性拟合得到模型列表models_lapply
+
+```{r}
+models_lapply <- lapply(bootstraps, function(data) lm(mpg ~ disp, data))
+```
+
+(2) 利用rsq函数提取每个$R^2$
+
+```{r}
+lapply(models_lapply, function(model) rsq(model))
+```
+
+两种方法得到的结果也是一样的。
+
+
+# 11.2.5
+
+## 1
+
+
+Use vapply() to:
+
+a) Compute the standard deviation of every column in a numeric data frame.
+
+b) Compute the standard deviation of every numeric column
+in a mixed data frame. (Hint: you’ll need to use vapply()
+twice.)
+
+### (a) 
+
+这里不妨还是取mtcars数据
+```{r}
+data("mtcars")
+vapply(mtcars, sd, FUN.VALUE = 1.0)
+```
+
+
+
+### (b)
+
+这里不妨取R自带的iris数据集，我们需要先识别出那些为数值型变量的列，然后对这些列计算标准差
+```{r}
+data("iris")
+# 用vapply识别为数值型变量的列
+index <- vapply(iris, is.numeric, FUN.VALUE = logical(1))
+# 计算标准差
+vapply(iris[,index], sd, FUN.VALUE = 1.0)
+```
+
+
+
+
+## 7
+
+
+Implement mcsapply(), a multicore version of sapply(). Can
+you implement mcvapply(), a parallel version of vapply()?
+Why or why not?
+
+### mcsapply(), a multicore version of sapply()
+
+下面分配四个核来构造mcsapply函数
+
+```{r}
+library(parallel)
+mcsapply <- function(n, func){
+  core <- makeCluster(4)    # 使用4个核
+  res <- parSapply(core, n, func)   # 并行计算，n为次数，func为函数
+  stopCluster(core)         # 关闭核
+}
+```
+
+然后不妨尝试还是考虑前面习题中提及的计算置换数据的$R^2$
+
+```{r}
+R2 <- function(i){
+  index <- sample(1:nrow(mtcars), rep = TRUE)
+  m <- lm(mpg ~ disp, data = mtcars[index,])
+  return(summary(m)$r.squared)
+}
+
+# 使用sapply函数进行10次
+system.time(sapply(1:10, R2))
+# 使用mcsapply函数进行10次
+system.time(mcsapply(1:10, R2))
+
+
+# 使用sapply函数进行10000次
+system.time(sapply(1:10000, R2))
+# 使用mcsapply函数进行10000次
+system.time(mcsapply(1:10000, R2))
+```
+
+
+实际上，发现当样本量比较小的时候，并行计算反而比不并行所需要的时间更久，因为涉及到分配等额外消耗。当样本量比较大的时候并行计算会快很多。
+
+
+### mcvapply(), a multicore version of vapply()
+
+由于R中并没有现成的parVapply函数，所以并行这一步的处理无法进行，但是如果可以写出该函数，则方法类似上面。
+
+
+
+
+
+
+
+
+

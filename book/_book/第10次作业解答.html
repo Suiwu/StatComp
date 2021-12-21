@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 第10次作业解答 | 统计计算作业汇总</title>
+  <meta name="description" content="这是用R的bookdown功能制作中文图书的模板，输出格式为bookdown::gitbook和bookdown::pdf_book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 第10次作业解答 | 统计计算作业汇总" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="这是用R的bookdown功能制作中文图书的模板，输出格式为bookdown::gitbook和bookdown::pdf_book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 第10次作业解答 | 统计计算作业汇总" />
+  
+  <meta name="twitter:description" content="这是用R的bookdown功能制作中文图书的模板，输出格式为bookdown::gitbook和bookdown::pdf_book." />
+  
+
+<meta name="author" content="兰敬国" />
+
+
+<meta name="date" content="2021-12-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="第9次作业解答.html"/>
+<link rel="next" href="第11次作业解答.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","output/SVG"],
+  extensions: ["tex2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+   src="../../../MathJax/MathJax.js">
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>简介</a></li>
+<li class="chapter" data-level="1" data-path="第1次作业解答.html"><a href="第1次作业解答.html"><i class="fa fa-check"></i><b>1</b> 第1次作业解答</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="第1次作业解答.html"><a href="第1次作业解答.html#question"><i class="fa fa-check"></i><b>1.1</b> Question</a></li>
+<li class="chapter" data-level="1.2" data-path="第1次作业解答.html"><a href="第1次作业解答.html#answer"><i class="fa fa-check"></i><b>1.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="第1次作业解答.html"><a href="第1次作业解答.html#texts"><i class="fa fa-check"></i><b>1.2.1</b> Texts</a></li>
+<li class="chapter" data-level="1.2.2" data-path="第1次作业解答.html"><a href="第1次作业解答.html#figures"><i class="fa fa-check"></i><b>1.2.2</b> Figures</a></li>
+<li class="chapter" data-level="1.2.3" data-path="第1次作业解答.html"><a href="第1次作业解答.html#ggplot2"><i class="fa fa-check"></i><b>1.2.3</b> ggplot2</a></li>
+<li class="chapter" data-level="1.2.4" data-path="第1次作业解答.html"><a href="第1次作业解答.html#tables"><i class="fa fa-check"></i><b>1.2.4</b> Tables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="第2次作业解答.html"><a href="第2次作业解答.html"><i class="fa fa-check"></i><b>2</b> 第2次作业解答</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="第2次作业解答.html"><a href="第2次作业解答.html#question-1"><i class="fa fa-check"></i><b>2.1</b> Question</a></li>
+<li class="chapter" data-level="2.2" data-path="第2次作业解答.html"><a href="第2次作业解答.html#answer-1"><i class="fa fa-check"></i><b>2.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="第2次作业解答.html"><a href="第2次作业解答.html#section"><i class="fa fa-check"></i><b>2.2.1</b> 3.4</a></li>
+<li class="chapter" data-level="2.2.2" data-path="第2次作业解答.html"><a href="第2次作业解答.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 3.11</a></li>
+<li class="chapter" data-level="2.2.3" data-path="第2次作业解答.html"><a href="第2次作业解答.html#section-2"><i class="fa fa-check"></i><b>2.2.3</b> 3.20</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="第3次作业解答.html"><a href="第3次作业解答.html"><i class="fa fa-check"></i><b>3</b> 第3次作业解答</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="第3次作业解答.html"><a href="第3次作业解答.html#question-2"><i class="fa fa-check"></i><b>3.1</b> Question</a></li>
+<li class="chapter" data-level="3.2" data-path="第3次作业解答.html"><a href="第3次作业解答.html#answer-2"><i class="fa fa-check"></i><b>3.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-3"><i class="fa fa-check"></i><b>3.2.1</b> 5.4</a></li>
+<li class="chapter" data-level="3.2.2" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-4"><i class="fa fa-check"></i><b>3.2.2</b> 5.9</a></li>
+<li class="chapter" data-level="3.2.3" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-5"><i class="fa fa-check"></i><b>3.2.3</b> 5.13</a></li>
+<li class="chapter" data-level="3.2.4" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-6"><i class="fa fa-check"></i><b>3.2.4</b> 5.14</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="第4次作业解答.html"><a href="第4次作业解答.html"><i class="fa fa-check"></i><b>4</b> 第4次作业解答</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="第4次作业解答.html"><a href="第4次作业解答.html#question-3"><i class="fa fa-check"></i><b>4.1</b> Question</a></li>
+<li class="chapter" data-level="4.2" data-path="第4次作业解答.html"><a href="第4次作业解答.html#answer-3"><i class="fa fa-check"></i><b>4.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="第4次作业解答.html"><a href="第4次作业解答.html#section-7"><i class="fa fa-check"></i><b>4.2.1</b> 6.5</a></li>
+<li class="chapter" data-level="4.2.2" data-path="第4次作业解答.html"><a href="第4次作业解答.html#a"><i class="fa fa-check"></i><b>4.2.2</b> 6.A</a></li>
+<li class="chapter" data-level="4.2.3" data-path="第4次作业解答.html"><a href="第4次作业解答.html#discussion"><i class="fa fa-check"></i><b>4.2.3</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="第5次作业解答.html"><a href="第5次作业解答.html"><i class="fa fa-check"></i><b>5</b> 第5次作业解答</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="第5次作业解答.html"><a href="第5次作业解答.html#question-4"><i class="fa fa-check"></i><b>5.1</b> Question</a></li>
+<li class="chapter" data-level="5.2" data-path="第5次作业解答.html"><a href="第5次作业解答.html#answer-4"><i class="fa fa-check"></i><b>5.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="第5次作业解答.html"><a href="第5次作业解答.html#多元正态性的偏度检验6.8"><i class="fa fa-check"></i><b>5.2.1</b> 多元正态性的偏度检验(6.8)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="第5次作业解答.html"><a href="第5次作业解答.html#多元正态性偏度检验的功效6.10"><i class="fa fa-check"></i><b>5.2.2</b> 多元正态性偏度检验的功效(6.10)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="第6次作业解答.html"><a href="第6次作业解答.html"><i class="fa fa-check"></i><b>6</b> 第6次作业解答</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="第6次作业解答.html"><a href="第6次作业解答.html#question-5"><i class="fa fa-check"></i><b>6.1</b> Question</a></li>
+<li class="chapter" data-level="6.2" data-path="第6次作业解答.html"><a href="第6次作业解答.html#answer-5"><i class="fa fa-check"></i><b>6.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="第6次作业解答.html"><a href="第6次作业解答.html#section-8"><i class="fa fa-check"></i><b>6.2.1</b> 7.7, 7.8, 7.9</a></li>
+<li class="chapter" data-level="6.2.2" data-path="第6次作业解答.html"><a href="第6次作业解答.html#b"><i class="fa fa-check"></i><b>6.2.2</b> 7.B</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="第7次作业解答.html"><a href="第7次作业解答.html"><i class="fa fa-check"></i><b>7</b> 第7次作业解答</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="第7次作业解答.html"><a href="第7次作业解答.html#question-6"><i class="fa fa-check"></i><b>7.1</b> Question</a></li>
+<li class="chapter" data-level="7.2" data-path="第7次作业解答.html"><a href="第7次作业解答.html#answer-6"><i class="fa fa-check"></i><b>7.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="第7次作业解答.html"><a href="第7次作业解答.html#section-9"><i class="fa fa-check"></i><b>7.2.1</b> 8.2</a></li>
+<li class="chapter" data-level="7.2.2" data-path="第7次作业解答.html"><a href="第7次作业解答.html#discussion-1"><i class="fa fa-check"></i><b>7.2.2</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="第7次作业解答.html"><a href="第7次作业解答.html#unequal-variances-and-unequal-expectations"><i class="fa fa-check"></i><b>7.3</b> Unequal variances and unequal expectations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="第8次作业解答.html"><a href="第8次作业解答.html"><i class="fa fa-check"></i><b>8</b> 第8次作业解答</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="第8次作业解答.html"><a href="第8次作业解答.html#question-7"><i class="fa fa-check"></i><b>8.1</b> Question</a></li>
+<li class="chapter" data-level="8.2" data-path="第8次作业解答.html"><a href="第8次作业解答.html#answer-7"><i class="fa fa-check"></i><b>8.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="第8次作业解答.html"><a href="第8次作业解答.html#section-10"><i class="fa fa-check"></i><b>8.2.1</b> 9.3</a></li>
+<li class="chapter" data-level="8.2.2" data-path="第8次作业解答.html"><a href="第8次作业解答.html#section-11"><i class="fa fa-check"></i><b>8.2.2</b> 9.8</a></li>
+<li class="chapter" data-level="8.2.3" data-path="第8次作业解答.html"><a href="第8次作业解答.html#discussion-2"><i class="fa fa-check"></i><b>8.2.3</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="第9次作业解答.html"><a href="第9次作业解答.html"><i class="fa fa-check"></i><b>9</b> 第9次作业解答</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="第9次作业解答.html"><a href="第9次作业解答.html#question-8"><i class="fa fa-check"></i><b>9.1</b> Question</a></li>
+<li class="chapter" data-level="9.2" data-path="第9次作业解答.html"><a href="第9次作业解答.html#answer-8"><i class="fa fa-check"></i><b>9.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="第9次作业解答.html"><a href="第9次作业解答.html#section-14"><i class="fa fa-check"></i><b>9.2.1</b> 11.3</a></li>
+<li class="chapter" data-level="9.2.2" data-path="第9次作业解答.html"><a href="第9次作业解答.html#section-15"><i class="fa fa-check"></i><b>9.2.2</b> 11.5</a></li>
+<li class="chapter" data-level="9.2.3" data-path="第9次作业解答.html"><a href="第9次作业解答.html#discussion-3"><i class="fa fa-check"></i><b>9.2.3</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="第10次作业解答.html"><a href="第10次作业解答.html"><i class="fa fa-check"></i><b>10</b> 第10次作业解答</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="第10次作业解答.html"><a href="第10次作业解答.html#question-9"><i class="fa fa-check"></i><b>10.1</b> Question</a></li>
+<li class="chapter" data-level="10.2" data-path="第10次作业解答.html"><a href="第10次作业解答.html#answer-9"><i class="fa fa-check"></i><b>10.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p204-1"><i class="fa fa-check"></i><b>10.2.1</b> P204-1</a></li>
+<li class="chapter" data-level="10.2.2" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p204-5"><i class="fa fa-check"></i><b>10.2.2</b> P204-5</a></li>
+<li class="chapter" data-level="10.2.3" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p214-1"><i class="fa fa-check"></i><b>10.2.3</b> P214-1</a></li>
+<li class="chapter" data-level="10.2.4" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p214-7"><i class="fa fa-check"></i><b>10.2.4</b> P214-7</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="第11次作业解答.html"><a href="第11次作业解答.html"><i class="fa fa-check"></i><b>11</b> 第11次作业解答</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="第11次作业解答.html"><a href="第11次作业解答.html#question-10"><i class="fa fa-check"></i><b>11.1</b> Question</a></li>
+<li class="chapter" data-level="11.2" data-path="第11次作业解答.html"><a href="第11次作业解答.html#answer-10"><i class="fa fa-check"></i><b>11.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="第11次作业解答.html"><a href="第11次作业解答.html#gibbs-in-r"><i class="fa fa-check"></i><b>11.2.1</b> Gibbs in R</a></li>
+<li class="chapter" data-level="11.2.2" data-path="第11次作业解答.html"><a href="第11次作业解答.html#gibbs-in-c"><i class="fa fa-check"></i><b>11.2.2</b> Gibbs in C</a></li>
+<li class="chapter" data-level="11.2.3" data-path="第11次作业解答.html"><a href="第11次作业解答.html#qq-plot"><i class="fa fa-check"></i><b>11.2.3</b> QQ plot</a></li>
+<li class="chapter" data-level="11.2.4" data-path="第11次作业解答.html"><a href="第11次作业解答.html#time"><i class="fa fa-check"></i><b>11.2.4</b> Time</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计计算作业汇总</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="第10次作业解答" class="section level1" number="10">
+<h1><span class="header-section-number">10</span> 第10次作业解答</h1>
+<div id="question-9" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Question</h2>
+<ul>
+<li>Exercises 1 and 5 (page 204, Advanced R)</li>
+<li>Excecises 1 and 7 (page 214, Advanced R)</li>
+</ul>
+</div>
+<div id="answer-9" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Answer</h2>
+<div id="p204-1" class="section level3" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> P204-1</h3>
+<p>Why are the following two invocations of <code>lapply()</code> equivalent?</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="第10次作业解答.html#cb100-1" aria-hidden="true" tabindex="-1"></a>trims <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span>)</span>
+<span id="cb100-2"><a href="第10次作业解答.html#cb100-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rcauchy</span>(<span class="dv">100</span>)</span>
+<span id="cb100-3"><a href="第10次作业解答.html#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(trims, <span class="cf">function</span>(trim) <span class="fu">mean</span>(x, <span class="at">trim =</span> trim))</span>
+<span id="cb100-4"><a href="第10次作业解答.html#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(trims, mean, <span class="at">x =</span> x)</span></code></pre></div>
+<p>答:
+mean(x,trim)实际上有两个参数x和trim</p>
+<ul>
+<li>第一种表达是构造了新的function,给定了x的值，只剩下一个参数trim, lapply可以直接对trim的每个取值调用新的函数求mean</li>
+<li>第二种表达实际上把mean的参数x直接传到lapply里了, 也是对trim每个取值求mean</li>
+</ul>
+</div>
+<div id="p204-5" class="section level3" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> P204-5</h3>
+<p>For each model in the previous two exercises, extract R2 using
+the function below.</p>
+<div id="ex1" class="section level4" number="10.2.2.1">
+<h4><span class="header-section-number">10.2.2.1</span> Ex1</h4>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="第10次作业解答.html#cb101-1" aria-hidden="true" tabindex="-1"></a>formulas <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb101-2"><a href="第10次作业解答.html#cb101-2" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">~</span> disp,</span>
+<span id="cb101-3"><a href="第10次作业解答.html#cb101-3" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">~</span> <span class="fu">I</span>(<span class="dv">1</span> <span class="sc">/</span> disp),</span>
+<span id="cb101-4"><a href="第10次作业解答.html#cb101-4" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">~</span> disp <span class="sc">+</span> wt,</span>
+<span id="cb101-5"><a href="第10次作业解答.html#cb101-5" aria-hidden="true" tabindex="-1"></a>mpg <span class="sc">~</span> <span class="fu">I</span>(<span class="dv">1</span> <span class="sc">/</span> disp) <span class="sc">+</span> wt</span>
+<span id="cb101-6"><a href="第10次作业解答.html#cb101-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb101-7"><a href="第10次作业解答.html#cb101-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(formulas,lm,<span class="at">data=</span>mtcars)</span></code></pre></div>
+<pre><code>## [[1]]
+## 
+## Call:
+## FUN(formula = X[[i]], data = ..1)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    29.59985     -0.04122  
+## 
+## 
+## [[2]]
+## 
+## Call:
+## FUN(formula = X[[i]], data = ..1)
+## 
+## Coefficients:
+## (Intercept)    I(1/disp)  
+##       10.75      1557.67  
+## 
+## 
+## [[3]]
+## 
+## Call:
+## FUN(formula = X[[i]], data = ..1)
+## 
+## Coefficients:
+## (Intercept)         disp           wt  
+##    34.96055     -0.01772     -3.35083  
+## 
+## 
+## [[4]]
+## 
+## Call:
+## FUN(formula = X[[i]], data = ..1)
+## 
+## Coefficients:
+## (Intercept)    I(1/disp)           wt  
+##      19.024     1142.560       -1.798</code></pre>
+</div>
+<div id="ex2" class="section level4" number="10.2.2.2">
+<h4><span class="header-section-number">10.2.2.2</span> Ex2</h4>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="第10次作业解答.html#cb103-1" aria-hidden="true" tabindex="-1"></a>bootstraps <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="cf">function</span>(i) {</span>
+<span id="cb103-2"><a href="第10次作业解答.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  rows <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mtcars), <span class="at">rep =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb103-3"><a href="第10次作业解答.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  mtcars[rows, ]</span>
+<span id="cb103-4"><a href="第10次作业解答.html#cb103-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb103-5"><a href="第10次作业解答.html#cb103-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-6"><a href="第10次作业解答.html#cb103-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(bootstraps,<span class="cf">function</span>(t) <span class="fu">lm</span>(mpg<span class="sc">~</span>disp,<span class="at">data=</span>t))</span></code></pre></div>
+<pre><code>## [[1]]
+## 
+## Call:
+## lm(formula = mpg ~ disp, data = t)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    30.07649     -0.04254  
+## 
+## 
+## [[2]]
+## 
+## Call:
+## lm(formula = mpg ~ disp, data = t)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    29.01307     -0.03946  
+## 
+## 
+## [[3]]
+## 
+## Call:
+## lm(formula = mpg ~ disp, data = t)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    29.57283     -0.03867  
+## 
+## 
+## [[4]]
+## 
+## Call:
+## lm(formula = mpg ~ disp, data = t)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    29.77616     -0.04194  
+## 
+## 
+## [[5]]
+## 
+## Call:
+## lm(formula = mpg ~ disp, data = t)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    30.37967     -0.04526  
+## 
+## 
+## [[6]]
+## 
+## Call:
+## lm(formula = mpg ~ disp, data = t)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    28.20938     -0.03726  
+## 
+## 
+## [[7]]
+## 
+## Call:
+## lm(formula = mpg ~ disp, data = t)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    31.01170     -0.04959  
+## 
+## 
+## [[8]]
+## 
+## Call:
+## lm(formula = mpg ~ disp, data = t)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    30.86442     -0.04449  
+## 
+## 
+## [[9]]
+## 
+## Call:
+## lm(formula = mpg ~ disp, data = t)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    30.04473     -0.04182  
+## 
+## 
+## [[10]]
+## 
+## Call:
+## lm(formula = mpg ~ disp, data = t)
+## 
+## Coefficients:
+## (Intercept)         disp  
+##    28.54571     -0.03534</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="第10次作业解答.html#cb105-1" aria-hidden="true" tabindex="-1"></a>rsq <span class="ot">&lt;-</span> <span class="cf">function</span>(mod) <span class="fu">summary</span>(mod)<span class="sc">$</span>r.squared</span>
+<span id="cb105-2"><a href="第10次作业解答.html#cb105-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-3"><a href="第10次作业解答.html#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Ex1</span></span>
+<span id="cb105-4"><a href="第10次作业解答.html#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;这是Ex1 4个模型的R-square</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 这是Ex1 4个模型的R-square</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="第10次作业解答.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">lapply</span>(formulas,lm,<span class="at">data=</span>mtcars), rsq)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 0.7183433
+## 
+## [[2]]
+## [1] 0.8596865
+## 
+## [[3]]
+## [1] 0.7809306
+## 
+## [[4]]
+## [1] 0.8838038</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="第10次作业解答.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Ex2</span></span>
+<span id="cb109-2"><a href="第10次作业解答.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;这是Ex2 10个模型的R-square</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 这是Ex2 10个模型的R-square</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="第10次作业解答.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="fu">lapply</span>(bootstraps,<span class="cf">function</span>(t) <span class="fu">lm</span>(mpg<span class="sc">~</span>disp,<span class="at">data=</span>t)), rsq)</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 0.6986607
+## 
+## [[2]]
+## [1] 0.7534348
+## 
+## [[3]]
+## [1] 0.7027078
+## 
+## [[4]]
+## [1] 0.6960993
+## 
+## [[5]]
+## [1] 0.7388991
+## 
+## [[6]]
+## [1] 0.6937985
+## 
+## [[7]]
+## [1] 0.6827093
+## 
+## [[8]]
+## [1] 0.7819097
+## 
+## [[9]]
+## [1] 0.7533153
+## 
+## [[10]]
+## [1] 0.663602</code></pre>
+</div>
+</div>
+<div id="p214-1" class="section level3" number="10.2.3">
+<h3><span class="header-section-number">10.2.3</span> P214-1</h3>
+<p>Use <code>vapply()</code> to:</p>
+<ul>
+<li><ol style="list-style-type: lower-alpha">
+<li>Compute the standard deviation of every column in a numeric data frame.</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: lower-alpha">
+<li>Compute the standard deviation of every numeric column in a mixed data frame.
+(Hint: you’ll need to use <code>vapply()</code> twice.)</li>
+</ol></li>
+</ul>
+<div id="a-1" class="section level4" number="10.2.3.1">
+<h4><span class="header-section-number">10.2.3.1</span> (a)</h4>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="第10次作业解答.html#cb113-1" aria-hidden="true" tabindex="-1"></a>df<span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">b=</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">c =</span><span class="dv">9</span><span class="sc">:</span><span class="dv">12</span>)</span>
+<span id="cb113-2"><a href="第10次作业解答.html#cb113-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-3"><a href="第10次作业解答.html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="do">## 每一列取标准差</span></span>
+<span id="cb113-4"><a href="第10次作业解答.html#cb113-4" aria-hidden="true" tabindex="-1"></a><span class="fu">vapply</span>(<span class="fu">as.list</span>(df),sd,<span class="fu">numeric</span>(<span class="dv">1</span>))</span></code></pre></div>
+<pre><code>##        a        b        c 
+## 1.290994 1.290994 1.290994</code></pre>
+</div>
+<div id="b-1" class="section level4" number="10.2.3.2">
+<h4><span class="header-section-number">10.2.3.2</span> (b)</h4>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="第10次作业解答.html#cb115-1" aria-hidden="true" tabindex="-1"></a>df2<span class="ot">=</span><span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">b=</span><span class="fu">c</span>(<span class="st">&quot;x&quot;</span>,<span class="st">&quot;y&quot;</span>,<span class="st">&quot;z&quot;</span>,<span class="st">&quot;s&quot;</span>), <span class="at">c =</span><span class="dv">9</span><span class="sc">:</span><span class="dv">12</span>)</span>
+<span id="cb115-2"><a href="第10次作业解答.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vapply</span>(df2[<span class="fu">vapply</span>(df2, is.numeric, <span class="fu">logical</span>(<span class="dv">1</span>))], sd, <span class="fu">numeric</span>(<span class="dv">1</span>))</span></code></pre></div>
+<pre><code>##        a        c 
+## 1.290994 1.290994</code></pre>
+</div>
+</div>
+<div id="p214-7" class="section level3" number="10.2.4">
+<h3><span class="header-section-number">10.2.4</span> P214-7</h3>
+<p>Implement <code>mcsapply()</code>, a multicore version of <code>sapply()</code>. Can
+you implement mcvapply(), a parallel version of <code>vapply()</code>?
+Why or why not?</p>
+<div id="mcsaplly" class="section level4" number="10.2.4.1">
+<h4><span class="header-section-number">10.2.4.1</span> mcsaplly()</h4>
+<p>下面分配四个核来构造mcsapply函数</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="第10次作业解答.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span>
+<span id="cb117-2"><a href="第10次作业解答.html#cb117-2" aria-hidden="true" tabindex="-1"></a>mcsapply <span class="ot">&lt;-</span> <span class="cf">function</span>(n, func){</span>
+<span id="cb117-3"><a href="第10次作业解答.html#cb117-3" aria-hidden="true" tabindex="-1"></a>  core <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(<span class="dv">4</span>)    <span class="co"># 使用4个核</span></span>
+<span id="cb117-4"><a href="第10次作业解答.html#cb117-4" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">parSapply</span>(core, n, func)   <span class="co"># 并行计算，n为次数，func为函数</span></span>
+<span id="cb117-5"><a href="第10次作业解答.html#cb117-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopCluster</span>(core)         <span class="co"># 关闭核</span></span>
+<span id="cb117-6"><a href="第10次作业解答.html#cb117-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>然后不妨尝试还是考虑前面习题中提及的计算置换数据的<span class="math inline">\(R^2\)</span></p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="第10次作业解答.html#cb118-1" aria-hidden="true" tabindex="-1"></a>R2 <span class="ot">&lt;-</span> <span class="cf">function</span>(i){</span>
+<span id="cb118-2"><a href="第10次作业解答.html#cb118-2" aria-hidden="true" tabindex="-1"></a>  index <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(mtcars), <span class="at">rep =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb118-3"><a href="第10次作业解答.html#cb118-3" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> disp, <span class="at">data =</span> mtcars[index,])</span>
+<span id="cb118-4"><a href="第10次作业解答.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">summary</span>(m)<span class="sc">$</span>r.squared)</span>
+<span id="cb118-5"><a href="第10次作业解答.html#cb118-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb118-6"><a href="第10次作业解答.html#cb118-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-7"><a href="第10次作业解答.html#cb118-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用sapply函数进行10次</span></span>
+<span id="cb118-8"><a href="第10次作业解答.html#cb118-8" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, R2))</span></code></pre></div>
+<pre><code>## 用户 系统 流逝 
+## 0.01 0.00 0.02</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="第10次作业解答.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用mcsapply函数进行10次</span></span>
+<span id="cb120-2"><a href="第10次作业解答.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">mcsapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, R2))</span></code></pre></div>
+<pre><code>## 用户 系统 流逝 
+## 0.00 0.02 0.14</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="第10次作业解答.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用sapply函数进行10000次</span></span>
+<span id="cb122-2"><a href="第10次作业解答.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>, R2))</span></code></pre></div>
+<pre><code>## 用户 系统 流逝 
+## 6.13 0.01 6.14</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="第10次作业解答.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用mcsapply函数进行10000次</span></span>
+<span id="cb124-2"><a href="第10次作业解答.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">mcsapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>, R2))</span></code></pre></div>
+<pre><code>## 用户 系统 流逝 
+## 0.00 0.02 1.82</code></pre>
+<p>实际上，发现当样本量比较小的时候，并行计算反而比不并行所需要的时间更久，因为涉及到分配等额外消耗。当样本量比较大的时候并行计算会快很多。</p>
+</div>
+<div id="mcvapply" class="section level4" number="10.2.4.2">
+<h4><span class="header-section-number">10.2.4.2</span> mcvapply()</h4>
+<p>由于R中并没有现成的parVapply函数，所以并行这一步的处理无法进行</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="第9次作业解答.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="第11次作业解答.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CBook.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
