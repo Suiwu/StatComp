@@ -12,7 +12,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 
 // gibbsC
 NumericMatrix gibbsC(int N, int thin);
-RcppExport SEXP _MyR_gibbsC(SEXP NSEXP, SEXP thinSEXP) {
+RcppExport SEXP _StatComp21055_gibbsC(SEXP NSEXP, SEXP thinSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -22,13 +22,27 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// vaccC
+NumericVector vaccC(NumericVector age, LogicalVector female, LogicalVector ily);
+RcppExport SEXP _StatComp21055_vaccC(SEXP ageSEXP, SEXP femaleSEXP, SEXP ilySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type age(ageSEXP);
+    Rcpp::traits::input_parameter< LogicalVector >::type female(femaleSEXP);
+    Rcpp::traits::input_parameter< LogicalVector >::type ily(ilySEXP);
+    rcpp_result_gen = Rcpp::wrap(vaccC(age, female, ily));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_MyR_gibbsC", (DL_FUNC) &_MyR_gibbsC, 2},
+    {"_StatComp21055_gibbsC", (DL_FUNC) &_StatComp21055_gibbsC, 2},
+    {"_StatComp21055_vaccC", (DL_FUNC) &_StatComp21055_vaccC, 3},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_MyR(DllInfo *dll) {
+RcppExport void R_init_StatComp21055(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

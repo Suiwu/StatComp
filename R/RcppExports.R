@@ -15,6 +15,23 @@
 #' }
 #' @export
 gibbsC <- function(N, thin) {
-    .Call('_MyR_gibbsC', PACKAGE = 'MyR', N, thin)
+    .Call('_StatComp21055_gibbsC', PACKAGE = 'StatComp21055', N, thin)
+}
+
+#' @title Use three inputs to predict response using Rcpp.
+#' @description The prediction model is described in http://www.babelgraph.org/wp/?p=358.
+#' @param age the first predictor (numeric)
+#' @param female the second predictor (logical)
+#' @param ily the third predictor (logical)
+#' @return a random sample of size \code{n}
+#' @examples
+#' \dontrun{
+#' data(data)
+#' attach(data)
+#' res <- vaccC(age,female,ily)
+#' }
+#' @export
+vaccC <- function(age, female, ily) {
+    .Call('_StatComp21055_vaccC', PACKAGE = 'StatComp21055', age, female, ily)
 }
 
