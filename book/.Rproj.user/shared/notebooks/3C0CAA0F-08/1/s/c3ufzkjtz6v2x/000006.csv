@@ -1,3 +1,0 @@
-"0",""
-"0","## 直方图"
-"0","hist(y, breaks=""scott"", main="""", xlab="""", freq=FALSE)"
