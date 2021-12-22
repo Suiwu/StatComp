@@ -66,10 +66,15 @@ knitr::kable(summary(tm2)[,c(1,3,5,6)])
 #    return(mat);
 #  }
 
-## ----eval=TRUE----------------------------------------------------------------
-tm2 <- microbenchmark(
-  vR = gibbsR(1e4, 10),
-  vC = gibbsC(1e4, 10)
-)
-knitr::kable(summary(tm2)[,c(1,3,5,6)])
+## ----eval=FALSE---------------------------------------------------------------
+#  tm2 <- microbenchmark(
+#    vR = gibbsR(1000, 10),
+#    vC = gibbsC(1000, 10)
+#  )
+#  knitr::kable(summary(tm2)[,c(1,3,5,6)])
+
+## -----------------------------------------------------------------------------
+library(abess)
+dat=generate.data(70,30,10)
+dat
 
