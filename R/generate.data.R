@@ -1,3 +1,4 @@
+library(stats)
 #' @title Generate simulated data
 #' @description Generate simulated data under the linear model
 #' @param n The number of observations.
@@ -14,7 +15,6 @@
 #' \item{x}{Design matrix of predictors.}
 #' \item{y}{Response variable.}
 #' \item{beta}{The true coefficients.}
-#' @importFrom("stats", "cov", "rnorm")
 #' @examples
 #' \dontrun{
 #' # Generate simulated data

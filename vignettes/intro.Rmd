@@ -45,7 +45,9 @@ brains 数据集
 
 ```{r}
 library(StatComp21055)
+library(bestsubset)
 library(BB)
+library(glmnet)
 library(shapes)
 library(frechet)
 data("brains")
@@ -88,9 +90,70 @@ r2
 ### 生成模拟数据
 
 ```{r}
-library(abess)
-dat=generate.data(70,30,10)
+n=30
+p=8
+support.size=5
+dat=sim.data(n,p,support.size)
 dat
+```
+
+
+### 生成数据 计算一些常用指标 并保存
+
+```{r}
+methods=c("Lasso","Forward stepwise","Relaxed lasso")
+rho.vec =c(0.35)
+beta.type = 1
+snr.vec = exp(seq(log(0.05),log(6),length=5))
+file.list=compute.index(n,p,nval=5,methods = methods,file=NULL,rho.vec=rho.vec,snr.vec=snr.vec,beta.type = beta.type)
+
+```
+
+
+### 画图输出
+
+#### risk
+
+```{r}
+library(ggplot2)
+#file.list = system(paste0("./data/rd/sim.n",n,".p",p,".*.rds"),intern=TRUE)
+method.nums = c(1,2,3)
+
+rho = 0.35
+
+## risk
+plot_index(file.list, what="risk",method.nums=c(1,2,3), method.names=methods,
+               make.pdf=FALSE,fig.dir=NULL,file.name="risk", h=4, w=4)
+```
+
+
+#### error
+
+```{r}
+plot_index(file.list, what="error",method.nums=c(1,2,3), method.names=methods,
+               make.pdf=FALSE,fig.dir=".",file.name="error", h=4, w=4)
+```
+
+
+#### nonzero
+
+```{r}
+plot_index(file.list, what="nonzero",method.nums=c(1,2,3), method.names=methods,
+               make.pdf=FALSE,fig.dir=".",file.name="nonzero", h=4, w=4)
+```
+
+
+#### F
+
+```{r}
+plot_index(file.list, what="F",method.nums=c(1,2,3), method.names=methods,
+               make.pdf=FALSE,fig.dir=".",file.name="F", h=4, w=4)
+```
+
+#### Prop
+```{r}
+plot_index(file.list, what="prop",method.nums=c(1,2,3), method.names=methods,
+               make.pdf=FALSE,fig.dir=".",file.name="prop", h=4, w=4)
 ```
 
 

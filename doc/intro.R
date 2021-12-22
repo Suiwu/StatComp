@@ -1,6 +1,8 @@
 ## -----------------------------------------------------------------------------
 library(StatComp21055)
+library(bestsubset)
 library(BB)
+library(glmnet)
 library(shapes)
 library(frechet)
 data("brains")
@@ -25,83 +27,70 @@ cbind(Y[,,1],yhat)
 r2=R2(Y,X)
 r2
 
-## ----eval=FALSE---------------------------------------------------------------
-#  function (age, female, ily)
-#  {
-#      p <- 0.25 + 0.3 * 1/(1 - exp(0.04 * age)) + 0.1 * ily
-#      p <- p * ifelse(female, 1.25, 0.75)
-#      p <- pmax(0, p)
-#      p <- pmin(1, p)
-#      p
-#  }
-
-## ----eval=FALSE---------------------------------------------------------------
-#  double vacc3a(double age, bool female, bool ily){
-#    double p = 0.25 + 0.3 * 1 / (1 - exp(0.04 * age)) + 0.1 * ily;
-#    p = p * (female ? 1.25 : 0.75);
-#    p = std::max(p, 0.0);
-#    p = std::min(p, 1.0);
-#    return p;
-#  }
-#  NumericVector vaccC(NumericVector age, LogicalVector female,
-#                      LogicalVector ily) {
-#    int n = age.size();
-#    NumericVector out(n);
-#    for(int i = 0; i < n; ++i) {
-#      out[i] = vacc3a(age[i], female[i], ily[i]);
-#    }
-#    return out;
-#  }
-
-## ----eval=TRUE----------------------------------------------------------------
-library(StatComp21055)
-library(microbenchmark)
-data(data)
-attach(data)
-tm2 <- microbenchmark(
-  vR = vaccR(age,female,ily),
-  vC = vaccC(age,female,ily)
-)
-knitr::kable(summary(tm2)[,c(1,3,5,6)])
-
-## ----eval=FALSE---------------------------------------------------------------
-#  gibbsR <- function(N, thin) {
-#    mat <- matrix(nrow = N, ncol = 2)
-#    x <- y <- 0
-#    for (i in 1:N) {
-#      for (j in 1:thin) {
-#        x <- rgamma(1, 3, y * y + 4)
-#        y <- rnorm(1, 1 / (x + 1), 1 / sqrt(2 * (x + 1)))
-#      }
-#      mat[i, ] <- c(x, y)
-#    }
-#    mat
-#  }
-
-## ----eval=FALSE---------------------------------------------------------------
-#  NumericMatrix gibbsC(int N, int thin) {
-#    NumericMatrix mat(N, 2);
-#    double x = 0, y = 0;
-#    for(int i = 0; i < N; i++) {
-#      for(int j = 0; j < thin; j++) {
-#        x = rgamma(1, 3, 1 / (y * y + 4))[0];
-#        y = rnorm(1, 1 / (x + 1), 1 / sqrt(2 * (x + 1)))[0];
-#      }
-#      mat(i, 0) = x;
-#      mat(i, 1) = y;
-#    }
-#    return(mat);
-#  }
-
-## ----eval=FALSE---------------------------------------------------------------
-#  tm2 <- microbenchmark(
-#    vR = gibbsR(1000, 10),
-#    vC = gibbsC(1000, 10)
-#  )
-#  knitr::kable(summary(tm2)[,c(1,3,5,6)])
+## -----------------------------------------------------------------------------
+n=30
+p=8
+support.size=5
+dat=sim.data(n,p,support.size)
+dat
 
 ## -----------------------------------------------------------------------------
-library(abess)
-dat=generate.data(70,30,10)
-dat
+methods=c("Lasso","Forward stepwise","Relaxed lasso")
+rho.vec =c(0.35)
+beta.type = 1
+snr.vec = exp(seq(log(0.05),log(6),length=5))
+file.list=compute.index(n,p,nval=5,methods = methods,file=NULL,rho.vec=rho.vec,snr.vec=snr.vec,beta.type = beta.type)
+
+
+## -----------------------------------------------------------------------------
+library(ggplot2)
+#file.list = system(paste0("./data/rd/sim.n",n,".p",p,".*.rds"),intern=TRUE)
+method.nums = c(1,2,3)
+
+rho = 0.35
+
+## risk
+plot_index(file.list, what="risk",method.nums=c(1,2,3), method.names=methods,
+               make.pdf=FALSE,fig.dir=NULL,file.name="risk", h=4, w=4)
+
+## -----------------------------------------------------------------------------
+plot_index(file.list, what="error",method.nums=c(1,2,3), method.names=methods,
+               make.pdf=FALSE,fig.dir=".",file.name="error", h=4, w=4)
+
+## -----------------------------------------------------------------------------
+plot_index(file.list, what="nonzero",method.nums=c(1,2,3), method.names=methods,
+               make.pdf=FALSE,fig.dir=".",file.name="nonzero", h=4, w=4)
+
+## -----------------------------------------------------------------------------
+plot_index(file.list, what="F",method.nums=c(1,2,3), method.names=methods,
+               make.pdf=FALSE,fig.dir=".",file.name="F", h=4, w=4)
+
+## -----------------------------------------------------------------------------
+plot_index(file.list, what="prop",method.nums=c(1,2,3), method.names=methods,
+               make.pdf=FALSE,fig.dir=".",file.name="prop", h=4, w=4)
+
+## -----------------------------------------------------------------------------
+a=1
+b=1
+n=25
+N=10000
+
+X=gibbsR(a,b,n,N)
+plot(X[,1],X[,2],xlab = "x",ylab = "y",main = "gibbsR")
+
+## -----------------------------------------------------------------------------
+Xc=gibbsC(a,b,n,N)
+plot(Xc[,1],Xc[,2],xlab = "x",ylab = "y",main="gibbsC")
+
+## -----------------------------------------------------------------------------
+qqplot(X[,1],Xc[,1],xlab = "gibbsR",ylab = "gibbsC",main="第1维变量QQ图")
+abline(0,1,col = "red")
+
+qqplot(X[,2],Xc[,2], xlab = "gibbsR",ylab = "gibbsC",main="第2维变量QQ图")
+abline(0,1,col = "red")
+
+## -----------------------------------------------------------------------------
+library(microbenchmark)
+ts=microbenchmark(gibbR=gibbsR(a,b,n,N), gibbC=gibbsC(a,b,n,N))
+summary(ts)[,c(1,3,5,6)]
 

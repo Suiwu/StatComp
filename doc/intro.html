@@ -12,7 +12,7 @@
 
 <meta name="author" content="兰敬国 SA21229031" />
 
-<meta name="date" content="2021-12-22" />
+<meta name="date" content="2021-12-23" />
 
 <title>Introduction to StatComp21055</title>
 
@@ -333,7 +333,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Introduction to StatComp21055</h1>
 <h4 class="author">兰敬国 SA21229031</h4>
-<h4 class="date">2021-12-22</h4>
+<h4 class="date">2021-12-23</h4>
 
 
 
@@ -361,16 +361,29 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <li>性别: brains$sex (1 for male / 2 for female)</li>
 <li>组别: brains$grp</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(StatComp21055)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BB)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shapes)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(frechet)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;brains&quot;</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 以年龄、性别和组别作为预测变量</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>X<span class="ot">=</span><span class="fu">cbind</span>(brains<span class="sc">$</span>age,brains<span class="sc">$</span>grp,brains<span class="sc">$</span>sex)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,]</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">=</span>brains<span class="sc">$</span>x[,,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 预览一下shapes data 的样子</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Y[,,<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(StatComp21055)</span></code></pre></div>
+<pre><code>## 
+## 载入程辑包：&#39;StatComp21055&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     gibbsR</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bestsubset)</span></code></pre></div>
+<pre><code>## 载入需要的程辑包：glmnet</code></pre>
+<pre><code>## 载入需要的程辑包：Matrix</code></pre>
+<pre><code>## Loaded glmnet 4.1-3</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;bestsubset&#39;:
+##   method     from   
+##   predict.bs splines</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BB)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shapes)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(frechet)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;brains&quot;</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="do">## 以年龄、性别和组别作为预测变量</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>X<span class="ot">=</span><span class="fu">cbind</span>(brains<span class="sc">$</span>age,brains<span class="sc">$</span>grp,brains<span class="sc">$</span>sex)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,]</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>Y<span class="ot">=</span>brains<span class="sc">$</span>x[,,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 预览一下shapes data 的样子</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(Y[,,<span class="dv">1</span>])</span></code></pre></div>
 <pre><code>##       [,1] [,2] [,3]
 ##  [1,]   80 23.5   59
 ##  [2,]   69 18.5   73
@@ -398,8 +411,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 ## [24,]   64 18.5   80</code></pre>
 <div id="计算一下均值" class="section level3">
 <h3>计算一下均值</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Fm<span class="ot">=</span><span class="fu">Fmean</span>(Y)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Fm</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Fm<span class="ot">=</span><span class="fu">Fmean</span>(Y)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Fm</span></code></pre></div>
 <pre><code>##           [,1]     [,2]     [,3]
 ##  [1,] 77.95930 27.16843 61.73238
 ##  [2,] 66.59319 23.86436 74.58517
@@ -428,10 +441,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="回归估计" class="section level3">
 <h3>回归估计</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 预测一下自变量是X[1,]处的Y值</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>yhat<span class="ot">=</span><span class="fu">FREShape</span>(Y,X,X[<span class="dv">1</span>,])</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(Y[,,<span class="dv">1</span>],yhat)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## 预测一下自变量是X[1,]处的Y值</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>yhat<span class="ot">=</span><span class="fu">FREShape</span>(Y,X,X[<span class="dv">1</span>,])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(Y[,,<span class="dv">1</span>],yhat)</span></code></pre></div>
 <pre><code>##       [,1] [,2] [,3]     [,4]     [,5]     [,6]
 ##  [1,]   80 23.5   59 79.28772 28.25237 60.57748
 ##  [2,]   69 18.5   73 66.51428 24.47849 74.99500
@@ -461,8 +474,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div id="模型估计" class="section level3">
 <h3>模型估计</h3>
 <p>针对不同的预测变量我们可以建立不同的模型，所以需要有个指标衡量哪个模型更好。能从欧氏空间借鉴的是决定系数(<span class="math inline">\(R^2\)</span>)或者调整后的决定系数(<span class="math inline">\(adj-R^2\)</span>)。决定系数越大说明模型拟合效果越好。</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>r2<span class="ot">=</span><span class="fu">R2</span>(Y,X)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>r2</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>r2<span class="ot">=</span><span class="fu">R2</span>(Y,X)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>r2</span></code></pre></div>
 <pre><code>## $R2
 ## [1] 0.4053331
 ## 
@@ -472,618 +485,232 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="变量选择" class="section level2">
 <h2>变量选择</h2>
-<p>这部分主要是</p>
-</div>
-<div id="benchmarking-vaccr-and-vaccc" class="section level2">
-<h2>Benchmarking <em>vaccR</em> and <em>vaccC</em></h2>
-<p>The source R code for <em>vaccR</em> is as follows:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (age, female, ily) </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fl">0.25</span> <span class="sc">+</span> <span class="fl">0.3</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">/</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="fl">0.04</span> <span class="sc">*</span> age)) <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">*</span> ily</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> p <span class="sc">*</span> <span class="fu">ifelse</span>(female, <span class="fl">1.25</span>, <span class="fl">0.75</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="dv">0</span>, p)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="dv">1</span>, p)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    p</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>The above code involves ‘ifelse’, ‘pmax’, and ‘pmin’, which are known to be slow. On the other hand, the following <em>Rcpp</em> code is much faster.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>double <span class="fu">vacc3a</span>(double age, bool female, bool ily){</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  double p <span class="ot">=</span> <span class="fl">0.25</span> <span class="sc">+</span> <span class="fl">0.3</span> <span class="sc">*</span> <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">exp</span>(<span class="fl">0.04</span> <span class="sc">*</span> age)) <span class="sc">+</span> <span class="fl">0.1</span> <span class="sc">*</span> ily;</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">=</span> p <span class="sc">*</span> (female ? <span class="fl">1.25</span> <span class="sc">:</span> <span class="fl">0.75</span>);</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">=</span> std<span class="sc">::</span><span class="fu">max</span>(p, <span class="fl">0.0</span>);</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">=</span> std<span class="sc">::</span><span class="fu">min</span>(p, <span class="fl">1.0</span>);</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  return p;</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>NumericVector <span class="fu">vaccC</span>(NumericVector age, LogicalVector female,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                    LogicalVector ily) {</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  int n <span class="ot">=</span> <span class="fu">age.size</span>();</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  NumericVector <span class="fu">out</span>(n);</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(int <span class="at">i =</span> <span class="dv">0</span>; i <span class="sc">&lt;</span> n; <span class="sc">++</span>i) {</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    out[i] <span class="ot">=</span> <span class="fu">vacc3a</span>(age[i], female[i], ily[i]);</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  return out;</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>In order to empirically benchmark <em>vaccR</em> and <em>vaccC</em>, one generates 1,000 repicates of (age, female, ily), and save it in data{StatComp}. To load the file, one simply calls <em>data(data)</em>. The R code for benchmark <em>vaccR</em> and <em>vaccC</em> is as follows.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(StatComp21055)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(data)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(data)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>tm2 <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">vR =</span> <span class="fu">vaccR</span>(age,female,ily),</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">vC =</span> <span class="fu">vaccC</span>(age,female,ily)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">summary</span>(tm2)[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>)])</span></code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">expr</th>
-<th align="right">lq</th>
-<th align="right">median</th>
-<th align="right">uq</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">vR</td>
-<td align="right">65.1</td>
-<td align="right">65.9</td>
-<td align="right">66.5</td>
-</tr>
-<tr class="even">
-<td align="left">vC</td>
-<td align="right">36.6</td>
-<td align="right">37.0</td>
-<td align="right">37.4</td>
-</tr>
-</tbody>
-</table>
-<p>The above results show an evident computational speed gain of C++ against R.</p>
-</div>
-<div id="benchmarking-gibbsr-and-gibbsc" class="section level2">
-<h2>Benchmarking <em>gibbsR</em> and <em>gibbsC</em></h2>
-<p>The source R code for <em>vaccR</em> is as follows:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gibbsR <span class="ot">&lt;-</span> <span class="cf">function</span>(N, thin) {</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> N, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> y <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>N) {</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>thin) {</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>      x <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">1</span>, <span class="dv">3</span>, y <span class="sc">*</span> y <span class="sc">+</span> <span class="dv">4</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>      y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">1</span> <span class="sc">/</span> (x <span class="sc">+</span> <span class="dv">1</span>), <span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> (x <span class="sc">+</span> <span class="dv">1</span>)))</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    mat[i, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(x, y)</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  mat</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>The above R code involves two loops, which could be very slow even for R-3.01 or any higher version. The corresponding C++ code is as follows.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>NumericMatrix <span class="fu">gibbsC</span>(int N, int thin) {</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  NumericMatrix <span class="fu">mat</span>(N, <span class="dv">2</span>);</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  double x <span class="ot">=</span> <span class="dv">0</span>, y <span class="ot">=</span> <span class="dv">0</span>;</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(int <span class="at">i =</span> <span class="dv">0</span>; i <span class="sc">&lt;</span> N; i<span class="sc">++</span>) {</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(int <span class="at">j =</span> <span class="dv">0</span>; j <span class="sc">&lt;</span> thin; j<span class="sc">++</span>) {</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      x <span class="ot">=</span> <span class="fu">rgamma</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span> <span class="sc">/</span> (y <span class="sc">*</span> y <span class="sc">+</span> <span class="dv">4</span>))[<span class="dv">0</span>];</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      y <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">1</span> <span class="sc">/</span> (x <span class="sc">+</span> <span class="dv">1</span>), <span class="dv">1</span> <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">2</span> <span class="sc">*</span> (x <span class="sc">+</span> <span class="dv">1</span>)))[<span class="dv">0</span>];</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mat</span>(i, <span class="dv">0</span>) <span class="ot">=</span> x;</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mat</span>(i, <span class="dv">1</span>) <span class="ot">=</span> y;</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(mat);</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>The R code for benchmarking <em>gibbsR</em> and <em>gibbsC</em> is as follows.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tm2 <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">vR =</span> <span class="fu">gibbsR</span>(<span class="dv">1000</span>, <span class="dv">10</span>),</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">vC =</span> <span class="fu">gibbsC</span>(<span class="dv">1000</span>, <span class="dv">10</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">summary</span>(tm2)[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>)])</span></code></pre></div>
-<p>The results again show an evident computational speed gain of C++ against R.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(abess)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>dat<span class="ot">=</span><span class="fu">generate.data</span>(<span class="dv">70</span>,<span class="dv">30</span>,<span class="dv">10</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>dat</span></code></pre></div>
+<p>这部分主要是变量选择的批处理函数的使用。</p>
+<div id="生成模拟数据" class="section level3">
+<h3>生成模拟数据</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">30</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>p<span class="ot">=</span><span class="dv">8</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>support.size<span class="ot">=</span><span class="dv">5</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>dat<span class="ot">=</span><span class="fu">sim.data</span>(n,p,support.size)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>dat</span></code></pre></div>
 <pre><code>## $x
-##                x1           x2          x3           x4           x5
-##  [1,] -0.62645381  0.475509529 -1.91435943 -0.164375832  0.398130155
-##  [2,]  0.18364332 -0.709946431  1.17658331  0.420694643 -0.407528579
-##  [3,] -0.83562861  0.610726353 -1.66497244 -0.400246744  1.324258630
-##  [4,]  1.59528080 -0.934097632 -0.46353040 -1.370207878 -0.701231669
-##  [5,]  0.32950777 -1.253633400 -1.11592011  0.987838267 -0.580614304
-##  [6,] -0.82046838  0.291446236 -0.75081900  1.519745025 -1.001072181
-##  [7,]  0.48742905 -0.443291873  2.08716655 -0.308740569 -0.668178607
-##  [8,]  0.73832471  0.001105352  0.01739562 -1.253289756  0.945184953
-##  [9,]  0.57578135  0.074341324 -1.28630053  0.642241306  0.433702150
-## [10,] -0.30538839 -0.589520946 -1.64060553 -0.044709137  1.005159218
-## [11,]  1.51178117 -0.568668733  0.45018710 -1.733218407 -0.390118664
-## [12,]  0.38984324 -0.135178615 -0.01855983  0.002131860  0.376370292
-## [13,] -0.62124058  1.178086997 -0.31806837 -0.630300334  0.244164924
-## [14,] -2.21469989 -1.523566800 -0.92936215 -0.340968580 -1.426257342
-## [15,]  1.12493092  0.593946188 -1.48746031 -1.156572363  1.778429287
-## [16,] -0.04493361  0.332950371 -1.07519230  1.803141908  0.134447661
-## [17,] -0.01619026  1.063099837  1.00002880 -0.331132036  0.765598999
-## [18,]  0.94383621 -0.304183924 -0.62126669 -1.605513412  0.955136677
-## [19,]  0.82122120  0.370018810 -1.38442685  0.197193439 -0.050565701
-## [20,]  0.59390132  0.267098791  1.86929062  0.263175646 -0.305815420
-## [21,]  0.91897737 -0.542520031  0.42510038 -0.985826700  0.893673702
-## [22,]  0.78213630  1.207867806 -0.23864710 -2.888920672 -1.047298149
-## [23,]  0.07456498  1.160402616  1.05848305 -0.640481703  1.971337386
-## [24,] -1.98935170  0.700213650  0.88642265  0.570507636 -0.383632106
-## [25,]  0.61982575  1.586833455 -0.61924305 -0.059723276  1.654145302
-## [26,] -0.05612874  0.558486426  2.20610246 -0.098178744  1.512212694
-## [27,] -0.15579551 -1.276592208 -0.25502703  0.560820729  0.082965734
-## [28,] -1.47075238 -0.573265414 -1.42449465 -1.186458639  0.567220915
-## [29,] -0.47815006 -1.224612615 -0.14439960  1.096777044 -1.024548480
-## [30,]  0.41794156 -0.473400636  0.20753834 -0.005344028  0.323006503
-## [31,]  1.35867955 -0.620366677  2.30797840  0.707310667  1.043612458
-## [32,] -0.10278773  0.042115873  0.10580237  1.034107735  0.099078487
-## [33,]  0.38767161 -0.910921649  0.45699881  0.223480415 -0.454136909
-## [34,] -0.05380504  0.158028772 -0.07715294 -0.878707613 -0.655781852
-## [35,] -1.37705956 -0.654584644 -0.33400084  1.162964556 -0.035922423
-## [36,] -0.41499456  1.767287269 -0.03472603 -2.000164945  1.069161461
-## [37,] -0.39428995  0.716707476  0.78763961 -0.544790740 -0.483974930
-## [38,] -0.05931340  0.910174229  2.07524501 -0.255670709 -0.121010111
-## [39,]  1.10002537  0.384185358  1.02739244 -0.166121037 -1.294140004
-## [40,]  0.76317575  1.682176081  1.20790840  1.020463909  0.494312836
-## [41,] -0.16452360 -0.635736454 -1.23132342  0.136221893  1.307901520
-## [42,] -0.25336168 -0.461644730  0.98389557  0.407167603  1.497041009
-## [43,]  0.69696338  1.432282239  0.21992480 -0.069654813  0.814702731
-## [44,]  0.55666320 -0.650696353 -1.46725003 -0.247664342 -1.869788790
-## [45,] -0.68875569 -0.207380744  0.52102274  0.695550807  0.482029504
-## [46,] -0.70749516 -0.392807929 -0.15875460  1.146228357  0.456135603
-## [47,]  0.36458196 -0.319992869  1.46458731 -2.403096215 -0.353400286
-## [48,]  0.76853292 -0.279113303 -0.76608200  0.572739555  0.170489471
-## [49,] -0.11234621  0.494188331 -0.43021175  0.374724407 -0.864035954
-## [50,]  0.88110773 -0.177330482 -0.92610950 -0.425267722  0.679230774
-## [51,]  0.39810588 -0.505957462 -0.17710396  0.951012808 -0.327101015
-## [52,] -0.61202639  1.343038825  0.40201178 -0.389237182 -1.569082185
-## [53,]  0.34111969 -0.214579409 -0.73174817 -0.284330662 -0.367450756
-## [54,] -1.12936310 -0.179556530  0.83037317  0.857409778  1.364434929
-## [55,]  1.43302370 -0.100190741 -1.20808279  1.719627299 -0.334281365
-## [56,]  1.98039990  0.712666307 -1.04798441  0.270054901  0.732750042
-## [57,] -0.36722148 -0.073564404  1.44115771 -0.422184010  0.946585640
-## [58,] -1.04413463 -0.037634171 -1.01584747 -1.189113295  0.004398704
-## [59,]  0.56971963 -0.681660479  0.41197471 -0.331032979 -0.352322306
-## [60,] -0.13505460 -0.324270272 -0.38107605 -0.939829327 -0.529695509
-## [61,]  2.40161776  0.060160440  0.40940184 -0.258932583  0.739589226
-## [62,] -0.03924000 -0.588894486  1.68887329  0.394379168 -1.063457415
-## [63,]  0.68973936  0.531496193  1.58658843 -0.851857092  0.246210844
-## [64,]  0.02800216 -1.518394082 -0.33090780  2.649166881 -0.289499367
-## [65,] -0.74327321  0.306557861 -2.28523554  0.156011676 -2.264889356
-## [66,]  0.18879230 -1.536449824  2.49766159  1.130207267 -1.408850456
-## [67,] -1.80495863 -0.300976127  0.66706617 -2.289123980  0.916019329
-## [68,]  1.46555486 -0.528279904  0.54132734  0.741001157 -0.191278951
-## [69,]  0.15325334 -0.652094781 -0.01339952 -1.316245160  0.803283216
-## [70,]  2.17261167 -0.056896778  0.51010842  0.919803678  1.887474463
-##                 x6          x7          x8          x9          x10         x11
-##  [1,]  1.473881181  1.43506957 -1.09057358 -1.21536404 -1.227882590 -0.70756823
-##  [2,]  0.677268492 -0.71037115  2.28465933 -0.02255863 -0.511219233  1.97157201
-##  [3,]  0.379962687 -0.06506757 -0.88561757  0.70123930 -0.731194999 -0.08999868
-##  [4,] -0.192798426 -1.75946874  0.11110643 -0.58748203  0.019752007 -0.01401725
-##  [5,]  1.577891795  0.56972297  3.81027668 -0.60672794 -1.572863915 -1.12345694
-##  [6,]  0.596234109  1.61234680 -1.10891000  1.09664022 -0.703333270 -1.34413012
-##  [7,] -1.173576941 -1.63728065  0.30756662 -0.24750968  0.715932089 -1.52315577
-##  [8,] -0.155642535 -0.77956851 -1.10689447 -0.15990171  0.465214906 -0.42196821
-##  [9,] -1.918909820 -0.64117693  0.34765365 -0.62577825 -0.973902306  1.36092446
-## [10,] -0.195258846 -0.68113139 -0.87326454  0.90043464  0.559217730  1.75379485
-## [11,] -2.592327670 -2.03328560  0.07730312 -0.99419363 -2.432639745  1.56836473
-## [12,]  1.314002167  0.50096356 -0.29686864  0.84925039 -0.340484927  1.29675557
-## [13,] -0.635543001 -1.53179814 -1.18324224  0.80570229  0.713033195 -0.23759625
-## [14,] -0.429978839 -0.02499764  0.01129269 -0.46760094 -0.659037386 -1.22415014
-## [15,] -0.169318332  0.59298472  0.99160104  0.84842031 -0.036402623 -0.32781268
-## [16,]  0.612218174 -0.19819542  1.59396745  0.98676986 -1.593286302 -2.41245028
-## [17,]  0.678340177  0.89200839 -1.37271127  0.57562029  0.847792797 -0.31379287
-## [18,]  0.567951972 -0.02571507 -0.24961093  2.02484205 -1.850388849  1.65987870
-## [19,] -0.572542604 -0.64766045  1.15942453 -1.96235319 -0.323650632  0.13095310
-## [20,] -1.363291256  0.64635942 -1.11422235 -1.16492093 -0.255248113  1.09588868
-## [21,] -0.388722244 -0.43383274 -2.52850069 -1.37651921  0.060921227  0.48934096
-## [22,]  0.277914132  1.77261118 -0.93590256  0.16767993 -0.823491629 -0.77891030
-## [23,] -0.823081122 -0.01825971 -0.96723946  1.58462908  1.829730485  1.74355935
-## [24,] -0.068840934  0.85281499  0.04748859  1.67788895 -1.429916216 -0.07838729
-## [25,] -1.167662326  0.20516290 -0.40373679  0.48829670  0.254137143 -0.97555379
-## [26,] -0.008309014 -3.00804860  0.23149613  0.87867326 -2.939773695  0.07065982
-## [27,]  0.128855402 -1.36611193 -0.42237241 -0.14487487  0.002415809 -1.51859953
-## [28,] -0.145875628 -0.42410226  0.37411839  0.46897176  0.509665571  0.86377903
-## [29,] -0.163910957  0.23680366 -0.36600577  0.37623548 -1.084720001  0.50156839
-## [30,]  1.763552003 -2.34272312  1.19010145 -0.76104028  0.704832977 -0.35478133
-## [31,]  0.762586512  0.96169663 -0.73732753 -0.29329493  0.330976350 -0.48842889
-## [32,]  1.111431081 -0.60442573  0.29066665 -0.13484126  0.976327473  0.93629395
-## [33,] -0.923206953 -0.75287728 -0.88484957  1.39384582 -0.843339880 -1.06240839
-## [34,]  0.164341838 -1.55561159  0.20800648 -1.03698869 -0.970579905 -0.98382087
-## [35,]  1.154825187 -1.45389374 -0.04773017 -2.11433515 -1.771531349  0.42424788
-## [36,] -0.056521425  0.05633184 -1.68452065  0.76827822 -0.322470342 -0.45131348
-## [37,] -2.129360648  0.50936941 -0.14422656 -0.81616062 -1.338800742  0.92508480
-## [38,]  0.344845762 -2.09788296  1.18021367 -0.43610692  0.688156028 -0.19862081
-## [39,] -1.904955446 -1.00436198  0.68139992  0.90470503  0.071280652  1.19485102
-## [40,] -0.811170153  0.53577172  0.14324763 -0.76308626  2.189752359  0.49554471
-## [41,]  1.324004321 -0.45303708 -1.19231644 -0.34106698 -1.157707599 -2.24515257
-## [42,]  0.615636849  2.16536850  1.16922865  1.50242453  1.181688064 -1.33537136
-## [43,]  1.091668956  1.24574667  0.07920171  0.52830771 -0.527368362  1.28277521
-## [44,]  0.306604862  0.59549803 -0.45177375  0.54219136 -1.456628011  0.69079590
-## [45,] -0.110158762  0.00488445  1.64202821 -0.13667336  0.572967370 -0.96706267
-## [46,] -0.924312773  0.27936078 -0.76959232 -1.13673385 -1.433377705 -1.34579369
-## [47,]  1.592913754 -0.70590613  0.30336096 -1.49662715 -1.055185019  1.03366539
-## [48,]  0.045010598  0.62801715  1.28173742 -0.22338564 -0.733111877 -0.81177646
-## [49,] -0.715128401  1.48021396  0.60222280  2.00171923  0.210907264  1.80172548
-## [50,]  0.865223100  1.08342991 -0.30702226  0.22170382 -0.998920727  1.77154196
-## [51,]  1.074440958 -0.81324426 -0.41841810  0.16437291  1.077850323 -1.45469137
-## [52,]  1.895654774 -1.61887685  0.35513553  0.33262361 -1.198974383 -0.84565431
-## [53,] -0.602997304 -0.10965570  0.51348111 -0.38520800  0.216637035 -1.25047966
-## [54,] -0.390867821  0.44088937  0.01860740 -1.39875403  0.143087030  0.66728807
-## [55,] -0.416222032  1.35099398  1.31844897  2.67574080 -1.065750091 -1.29076969
-## [56,] -0.375657423 -1.31860948 -0.06583200 -0.42368609 -0.428623411 -2.03500354
-## [57,] -0.366630946  0.36438459 -0.70029608 -0.29860151 -0.656179477  2.02134699
-## [58,] -0.295677453  0.23349984  0.53732613 -1.79234173  0.959394327  1.00597349
-## [59,]  1.441820410  1.19395526 -2.20178232 -0.24800823  1.556052636  0.81712360
-## [60,] -0.697538292 -0.02790997  0.39197374 -0.24730392 -1.040796434 -0.66398828
-## [61,] -0.388167506 -0.35729885  0.49696095 -0.25551038  0.930572409 -0.01128123
-## [62,]  0.652536452 -1.14681414 -0.22487472 -1.78693810 -0.075445931  0.61967726
-## [63,]  1.124772447 -0.51742048 -1.11714317  1.78466282 -1.967195349 -1.28123874
-## [64,] -0.772110803 -0.36212377 -0.39499460  1.76358635 -0.755903643 -0.12426133
-## [65,] -0.508086216  2.35055433  1.54983034  0.68960022  0.461149161  0.17574165
-## [66,]  0.523620590  2.44653138 -0.74351448 -1.10074064  0.145106631  1.69277379
-## [67,]  1.017754227 -0.16670328 -2.33171212  0.71450936 -2.442311321  0.64213272
-## [68,] -0.251164588 -1.04366744  0.81224544 -0.24647032  0.580318685  1.28223303
-## [69,] -1.429993447 -1.97293493 -0.50131066 -0.31978617  0.655051998  0.14054697
-## [70,]  1.709121032  0.51467163 -0.51088657  1.36264429 -0.304508837 -1.11250268
-##               x12         x13         x14          x15          x16         x17
-##  [1,] -0.33967697  2.00571858  0.09535401  0.463658648  0.041998754 -0.09953695
-##  [2,] -1.66476464 -2.07057148 -0.46281942  0.074778333  0.223422312 -0.43985764
-##  [3,]  0.92885176  3.05574237 -1.46888216 -0.486836236 -1.010465086 -0.71851145
-##  [4,]  1.41682683 -0.26135059  0.15268651  0.748910821  2.401222102 -0.55459760
-##  [5,] -0.06272078 -0.45439326  1.77376261  0.464234581  0.801961790  1.24548918
-##  [6,] -0.98090234  0.15756056 -0.64807093  0.129420458 -0.251207959 -1.25892135
-##  [7,]  1.08715025  0.93338873 -0.19981748 -0.815460652  1.212889371 -0.21538448
-##  [8,]  0.13932703  0.30282828  0.68924373 -0.040150452 -0.627258086 -2.47196171
-##  [9,] -0.38627210 -1.95615022  0.03614551  0.781416978  1.711158507 -0.67416932
-## [10,]  1.12358542  0.35353671  1.94353631  0.676452747 -0.394373553 -0.50129719
-## [11,] -0.75984566  0.45042451  0.73721373 -0.482652526 -2.321490856  1.54232579
-## [12,]  1.14895910  0.65955087  2.32133393 -0.669113468  1.364119195 -0.96201807
-## [13,] -0.84247626 -1.03142073  0.34890935  0.512801322  1.132229133 -0.87217954
-## [14,]  0.39141334 -2.37102288 -1.13391666  1.048909929 -0.774316319 -1.39762962
-## [15,]  0.89137724 -0.32457631  0.42133527  0.121058163 -1.410374966  0.17980517
-## [16,] -1.33525871 -0.94429875 -0.92455626 -0.313292885 -1.834527581  1.15409199
-## [17,]  0.39812348 -0.76589000 -1.00706237 -0.880670730 -0.269013538 -1.19853361
-## [18,] -0.11158680 -0.95377927 -0.18947433 -0.419286891 -1.833928577 -0.42572440
-## [19,]  0.67574392 -0.39800445  0.93391670 -1.482751678 -0.814468019  1.36630861
-## [20,] -0.78859794 -0.31121706  0.34391000 -0.697318199  0.163572122 -0.68429739
-## [21,] -0.08698633  0.79609271  0.81402028  1.134965089  0.855519222  0.68551221
-## [22,]  1.38228401  0.98642834  0.91534100  1.111931845 -0.819963127  0.38950354
-## [23,]  0.16849016 -0.79453166 -0.17185213 -0.870777634 -0.123602760 -1.30539592
-## [24,]  0.82319095 -0.30881797 -2.40223111  0.210731585  0.254948236  1.21688801
-## [25,] -0.22089460  0.36144477  0.79590685  0.069395647  1.718926338  0.79517402
-## [26,] -1.02939165  1.39879110  2.16911587 -1.662648853 -0.958543528 -0.48820251
-## [27,] -0.01092569 -0.05607042  0.05838350  0.810839980 -1.604310262 -0.90399345
-## [28,] -1.22499116 -1.69887349 -1.35491445 -1.912345796 -1.845609422 -0.39041842
-## [29,] -2.59611139  0.23185255 -0.36755077 -1.246753429  0.555737185  0.81406342
-## [30,]  1.16912259 -0.11909067 -0.93451758  0.998154445 -0.060119191 -0.56424928
-## [31,] -1.08690882  1.77249285 -0.04163922 -0.540872745  0.772086304 -1.87420532
-## [32,] -1.82608301  0.34342217  0.67611201 -0.216375791 -0.140839387 -0.14290471
-## [33,]  0.99528181 -0.62304978  0.86643615 -1.621937293  0.393093926  0.77190401
-## [34,] -0.01186178 -0.43952229  0.23517502 -1.450963965  0.224218574 -1.15911793
-## [35,] -0.59962839 -0.50529679 -0.93397013  0.350909731  0.023541985 -0.23791553
-## [36,] -0.17794799  0.18603514  0.81325217 -0.174546929 -0.622962660 -1.22219333
-## [37,] -0.42598134  0.17641780  1.34831856 -0.591428470  1.262009381  0.11680621
-## [38,]  0.99665878  0.91584821  2.25188278 -1.334027261 -0.405774043 -0.13249963
-## [39,]  0.72766071  0.32017673 -0.49365243 -1.097298501  0.666763771 -0.03368478
-## [40,] -1.72663060 -0.36668730  0.47409260  2.036103609  0.164639155 -0.62232642
-## [41,]  0.35339850 -0.94061130  1.19369167 -0.326489593  1.781524475 -0.70936346
-## [42,]  0.72681367  0.63470293 -0.11639547  0.774005212  0.711213964  0.87144541
-## [43,]  0.66826098 -0.06248848  0.52485856  0.785006401 -0.337691156  0.10513802
-## [44,] -2.42431731  0.18283787  0.21442148  0.763246080 -0.009148952 -0.18693527
-## [45,] -0.23535743  1.10364102 -0.13444953  0.294808760 -0.125309208 -3.21318853
-## [46,]  1.97963332  1.75203562  0.16850910 -1.252355924 -2.090846097 -1.27561870
-## [47,]  0.79679454 -0.95381646  0.96473277 -1.009503753  1.697393895  0.76290632
-## [48,] -1.70927618  1.64408046  0.40877891  0.751391195  1.063881154 -0.40681514
-## [49,] -1.66366871 -0.86673353 -0.46643822 -1.308353513 -0.766616636 -1.20831778
-## [50,]  0.49110955  0.26635219 -2.23978298  0.527540097  0.382007559 -0.43932266
-## [51,] -0.17405549  0.22237049 -0.79506319 -0.533539574  0.241895904 -0.37558075
-## [52,]  0.96129056 -0.27690851 -0.01995512 -0.398376014 -1.132759411 -0.50144240
-## [53,]  0.29382666  1.39425304 -2.51442512 -0.789569450  1.489907414  0.49661258
-## [54,]  0.08099936 -0.65891200  2.21095203 -0.230141136 -0.248247105  1.52088094
-## [55,]  0.18366184  0.66053128 -1.48876223  0.877184842  0.183583708  0.98809183
-## [56,]  0.16625504 -0.01325570 -1.16075188  0.453733178  0.404871009  1.24612253
-## [57,] -1.26959907 -0.93148030  1.45773822 -0.232464148 -0.994124469 -0.32986733
-## [58,]  2.34949332  1.21468914 -2.18987595  0.870005525 -1.085429330  0.84434471
-## [59,] -1.41200541 -2.08834037  0.73906268  1.656003734 -0.048542555 -0.98107576
-## [60,] -0.01696149 -0.52615247 -0.34400877 -0.006368929  0.576085601 -0.13922141
-## [61,] -0.54431935 -1.54140257  0.45587674  0.470489453  0.073830532  2.18543791
-## [62,]  1.80011233  0.19432107  0.87811026  0.278218649  0.705945571 -0.01282801
-## [63,]  1.01144018  0.26442255 -0.95846392 -0.977902941  0.334980103 -0.30530893
-## [64,] -0.56371656 -1.11873517 -0.70584485 -0.926586142  0.545387806 -0.58421346
-## [65,]  0.20542080  0.65095296 -2.99694930  1.919770463 -1.402905906  0.77126850
-## [66,]  1.16546195 -1.03290024 -0.96105232  0.881277788  0.677053891  2.10618936
-## [67,]  2.23632284  0.65920150  0.38018825  0.742081772 -0.789800446  0.41215704
-## [68,]  0.30226508  0.23782940  0.50506759  0.147573404 -0.465728889 -0.26126488
-## [69,] -1.04250660  0.71527595  2.02705600  0.485388565 -0.104852065  2.07378365
-## [70,] -0.98354231 -0.93848304  0.06462703  0.151856040 -1.647851087 -0.77883022
-##               x18          x19          x20         x21         x22         x23
-##  [1,]  1.13153251 -0.426529867 -0.572022722  1.54688133 -1.53421754  0.58764293
-##  [2,] -0.42134513 -0.926404248 -0.825930679  0.17892097 -1.20630986 -0.15829958
-##  [3,] -1.02174737 -0.928557925 -0.237584094 -0.28254659 -1.95002527 -0.29208541
-##  [4,]  1.21830538 -0.718900602 -0.595326496 -0.76729878 -0.88404003 -1.41989896
-##  [5,] -1.79976067 -0.414790570 -0.410742195 -0.57640424  0.97340599 -2.13831803
-##  [6,] -0.30824994 -0.005667893  0.327991438 -0.91485584 -0.58097132 -0.02250010
-##  [7,]  0.01551524  0.633448919 -1.163646612  0.36991096  1.73676738  0.26977095
-##  [8,] -0.44231772 -0.509180774  0.760177665 -1.46768436 -0.17267532 -0.50296940
-##  [9,] -1.63800773 -0.857008619 -0.002555836 -1.74536198 -0.93799253  0.63080739
-## [10,] -0.64140116  1.616167577 -0.038227771 -0.66738180 -0.28459366  0.47456521
-## [11,] -1.55703574  0.993866407 -2.036237420  1.08427901 -0.58901810 -0.34065906
-## [12,]  1.92316365  0.696845859 -0.301229079  0.12283164 -0.44393143  0.04960156
-## [13,] -1.85682963  1.699970673 -0.555646104 -0.49424939  0.05999657  1.29526319
-## [14,] -2.10611844 -0.977741945  0.847295416  0.66958818  0.08223295  0.31462420
-## [15,]  0.69764853  2.048817582  1.390820511 -0.35147885  0.75839752  0.80157250
-## [16,]  0.90744441  1.226449324  1.231246215 -0.11498040  0.53966299  0.48605890
-## [17,] -0.19598820  0.307023012 -1.113337462  0.07298694  0.77664765  1.72556106
-## [18,] -0.20682049  0.624332984 -0.796053893  1.08877461  0.13217166  0.10243286
-## [19,]  0.72504317  0.061341442 -0.089519877  1.29256874 -0.80686530 -0.98983707
-## [20,]  1.39871896 -0.110825791 -1.059656888  1.28251129  0.44935009 -0.46044121
-## [21,] -1.59055515 -1.576233560 -1.604312194  0.97905612  0.41264146  0.23766149
-## [22,]  1.30449708  0.742589846  0.791350666  0.32946978 -0.40361405 -0.26939726
-## [23,]  0.19601173  2.142323398  0.068156528  1.87963572 -0.38808828 -0.16955407
-## [24,] -0.33934345  2.089772957  0.614396000  2.04289903  1.09518775  0.66486897
-## [25,]  1.26514414  0.169794327 -1.203067753  1.32857637  1.34048004 -0.77555092
-## [26,]  0.93977369 -0.107877789 -0.340454835 -0.21966864  0.11440555 -1.91926113
-## [27,]  1.27795249  0.181994495 -1.171248634 -1.04004743 -0.39226462  2.01933254
-## [28,] -0.29116014  1.145928178 -0.829414768  0.19294978  1.65235784  0.43521051
-## [29,]  0.77617245  1.477298823  0.229212042 -0.55523625 -1.24369761  1.05016883
-## [30,]  0.29572563  0.407944153 -0.814992918  0.27499089 -0.91192587 -0.31211484
-## [31,] -0.51719955  1.114278735 -0.993445515 -0.55051341  0.85004347  0.09361762
-## [32,]  1.75723302 -0.027075844 -1.306168459  0.92125989 -0.92531300 -2.15318775
-## [33,]  0.16172682  0.497722203 -1.434221772  2.18945599  0.89358121  0.35799307
-## [34,] -0.05468438  1.185640014 -0.862847933  0.96399479 -0.94100974  0.46786481
-## [35,]  0.52897160  3.639573627  1.703799204  0.74181848  0.53895209 -0.90668883
-## [36,]  0.38973452 -0.054002596 -0.655632596  0.03735656 -0.18197440 -0.52934992
-## [37,] -0.70577141 -0.668147317 -1.113168626  2.18083369  0.89176759  1.34357672
-## [38,] -0.05317848  0.445807957 -1.405505446 -0.07958520  1.32920821  0.46943406
-## [39,]  2.60644449 -0.405825246 -0.150643687  1.37629503 -0.10346613 -0.25310509
-## [40,] -0.07259310  0.635283145 -0.394006912  1.57531668  0.61506461  0.36910372
-## [41,] -0.29627189  0.341248399  0.252069320  0.16037698 -1.79977240 -1.34670719
-## [42,]  0.73433034  1.316167163 -0.282706438 -3.25322007 -0.26270514  1.17193543
-## [43,]  0.40148075 -0.959776484  0.867667613 -0.32993049 -1.21014188 -1.90873634
-## [44,] -0.53830108 -1.205575211  0.720091121  0.45708983  0.20447725 -1.00439081
-## [45,] -1.08272281  1.567573058  1.056069601 -1.30410376 -0.01399410  0.67668751
-## [46,]  0.84780141  0.225285800  0.243502060 -1.29117344 -0.23520084  1.15232174
-## [47,]  0.11884502 -0.922410657  1.114362662  0.90637973 -0.18831865 -1.73275992
-## [48,]  0.48224722 -1.073772410 -0.076552714 -2.79596150  0.95128307  0.60130886
-## [49,] -0.29132480 -0.552358286  0.932925054  0.23356057 -0.15401479  0.34165031
-## [50,] -1.65211027  0.590461401 -0.157981739 -0.26903594  1.85424450 -0.03528101
-## [51,]  0.06909460 -0.527275411 -0.681509515 -0.65854506 -1.90416735 -0.62616502
-## [52,]  2.39057670  1.341846164 -1.220101091  0.06334579  0.35929970 -0.85597121
-## [53,] -1.46177169  0.243844628 -0.708912992  0.05447684  2.11453495  0.15177784
-## [54,] -0.98480629  0.195880789 -0.748679598  0.24700932 -1.13574899  1.20637269
-## [55,] -1.33605374 -0.015519729  0.576077526  0.12403555 -0.79625599 -1.48857788
-## [56,] -0.36513161 -0.297577328 -0.052099464 -0.53525670 -0.39756945 -1.05037412
-## [57,]  1.38145425 -0.167679147 -0.630337174  0.25848259  0.09172404  1.63787412
-## [58,] -0.15331726  1.156478580 -0.898336066  1.38770887 -0.23869407 -1.20733418
-## [59,] -0.25557163 -1.338764009  1.512685876  0.66717045 -0.46196236 -2.62615508
-## [60,] -1.28862710  1.086768775 -0.236749293  1.49704945  1.92634061  0.01746327
-## [61,]  0.06526642 -0.350684197 -1.248803422 -0.27488040  0.12205481  0.34419403
-## [62,]  1.03532642  0.734723245 -0.430009336  0.58307584  1.09205058  0.01271984
-## [63,]  2.26021579 -0.058414484  0.093299436  0.50335853 -2.97225748 -0.87345013
-## [64,]  1.31469628 -1.345812904  0.833041089 -0.74324768  1.12848905  0.34280028
-## [65,] -0.87002335  0.346905269 -0.084932478 -0.81687759  1.31200013 -0.17738775
-## [66,] -0.50313004 -0.638404647  0.111853039  1.87028368 -0.48260797  0.92143325
-## [67,]  0.60745556  1.124392355 -1.039435943 -0.82725304 -0.22485900  0.30094440
-## [68,] -0.01004142 -0.827733031  0.796422814  0.95071269  1.66776531  0.69338675
-## [69,]  0.27533030 -1.787780138  0.099903376 -0.26617235  0.04121853  0.32547191
-## [70,] -1.31229878 -0.854010003  0.736959753 -1.09908218  1.03817485  0.40805102
-##               x24          x25          x26         x27         x28
-##  [1,]  0.75984226 -0.081991744  0.253137809  0.20791155 -1.16734642
-##  [2,] -2.28715352  1.156263423  0.011497986  0.99292292  0.32335016
-##  [3,]  0.51783826  0.486796337 -1.975783962  0.81385789 -0.32078302
-##  [4,] -1.34723626  0.958848663 -0.426326724  0.99600558 -0.88595026
-##  [5,]  0.36315986  0.177792371  0.612302560  1.73274427  0.15127817
-##  [6,]  1.31475256  0.292250881  1.230814109  0.35704203  0.57936347
-##  [7,] -0.44830591 -2.113340685 -1.270807808  0.15572633 -0.07916683
-##  [8,] -0.80816447 -0.538047911 -0.650555664  1.55278866  0.84876764
-##  [9,] -0.08626850  1.014025585 -2.443166237 -0.06406962 -2.51103349
-## [10,]  1.58542427  0.101269641  0.996548595 -1.00821876  0.73847711
-## [11,]  0.10105745 -1.218707372  0.005113528 -0.89289552 -0.57099429
-## [12,]  0.14876221 -0.958376793  0.791024764 -0.65451462  0.28653902
-## [13,] -0.54643467 -0.555797485 -0.563191537 -1.43378283  1.14761986
-## [14,] -0.52767559  2.121875912  0.213826203  1.41818435  0.13955870
-## [15,] -0.13987156 -0.179589988  0.977082664 -0.59388567  0.08892661
-## [16,] -1.58941141 -0.644735408 -0.234161103  1.11897180 -2.63015932
-## [17,]  1.23410417 -2.092583772  0.848660554  2.38408156 -1.21722083
-## [18,] -0.33545485 -1.901870838  0.653970891 -0.40328649  0.74915258
-## [19,] -2.00100251  1.222250276 -1.590570026  0.37010856 -1.41593292
-## [20,] -0.01745840 -0.851220441  0.309423133 -0.57529301 -0.11238266
-## [21,] -0.24096690  1.621202883 -2.485982190  2.91922881  0.30403201
-## [22,] -1.79198940 -0.329102802 -0.278439107 -1.07891479 -0.35401280
-## [23,]  2.04969151 -2.326409527 -0.552433759  1.17849133 -0.85124249
-## [24,] -1.11721761  2.192998000  0.876042073  0.86960277 -1.46117308
-## [25,] -1.35354954 -1.082479976  0.293483694  0.93116631  0.26425185
-## [26,]  0.45130231 -0.506360967 -0.597222047  1.02468123 -1.90735794
-## [27,]  1.03322742  0.095918957 -0.157203603  0.61297506 -0.92523127
-## [28,] -0.19588570 -0.120165258  0.184185060  0.60819008 -0.11157129
-## [29,]  0.22731039 -1.518667630 -1.013032014 -0.89289171 -0.96523443
-## [30,] -1.10219975 -1.510585063 -0.679843405  0.45203561 -0.16289892
-## [31,]  0.95527737  1.395604928 -1.242693614 -0.37471231  0.86018405
-## [32,]  0.31283045 -0.708421944 -1.535018736  2.84018515  0.01809877
-## [33,]  0.10100571  0.827938353 -0.524540013  0.73239345  0.13726246
-## [34,]  0.74811541  1.707755837 -0.018527385  0.84051893  1.59888607
-## [35,]  0.99896089 -0.779166557 -1.568147171 -2.21965212 -0.11130085
-## [36,] -0.73251531 -0.706899069  0.467851674 -1.32746378  0.28545587
-## [37,]  0.48089524 -1.992902511 -0.667828864 -0.97666070 -1.98390990
-## [38,] -0.98945031  1.899876533  0.311082360 -0.58707587  0.03074022
-## [39,]  2.22955905 -0.756206936  0.142551004 -0.56801282 -0.76000489
-## [40,]  0.45673660 -0.377955780 -0.374034721  0.64364096 -1.22401322
-## [41,] -0.03581544 -1.363954801 -1.944926376 -0.23730711  1.00236665
-## [42,] -0.49044271  0.741958159 -1.597681314 -0.29857803 -0.02154142
-## [43,] -0.22056661  1.610975996 -2.540657861  1.18956256  0.94532134
-## [44,] -1.10120936  0.227387447  1.362047250 -2.10894120 -0.90849122
-## [45,]  0.06347047 -0.400515674 -0.360666003 -0.07328200 -2.40220223
-## [46,]  0.58352593 -1.669580400  1.936397311  0.86340287  0.16293805
-## [47,] -0.51335885  1.490701097 -1.455883798  1.07470746  0.94320893
-## [48,] -0.81255212  0.691487433  1.481905708 -0.20585263  2.54460486
-## [49,] -1.62931991 -0.040977477  1.076119636 -0.43361383  0.88719093
-## [50,]  0.56890571  1.204344853 -0.757488401 -0.18222378  1.06043677
-## [51,]  0.33378331  1.298514964  0.714085544 -0.43107867 -0.61574789
-## [52,] -0.21132256 -0.462217021  0.581384629 -0.42460961  0.35285488
-## [53,] -0.55109793 -1.225773748 -0.146723902 -1.35381968 -0.47532813
-## [54,]  0.25836113  0.963266754  1.506981777 -0.19659495  0.42205637
-## [55,] -1.37521045  0.693211228 -0.279532643  0.23411614 -1.18355915
-## [56,] -1.47275415 -0.501393166  2.027738733 -0.55720629 -0.38374958
-## [57,] -1.44520967  3.153971417 -1.195740196 -1.11332527 -1.45966581
-## [58,] -0.36128842 -2.549106895  1.312317892 -1.63063543  0.04577322
-## [59,]  0.79070996 -0.008138085 -0.524007513 -0.38782388  0.45245611
-## [60,]  0.71465785  1.138780641  0.354249509  1.72263202  0.05756587
-## [61,] -0.56515352  1.482346468 -0.071674488 -0.55850030 -0.63869385
-## [62,]  1.41801430  0.975845009 -0.133144306 -0.63666085 -0.23868132
-## [63,] -1.14575678  0.148350293 -0.088077384  2.78138713 -1.64290262
-## [64,] -0.49281782  0.788908757  0.917788931 -1.95725588 -0.22257457
-## [65,] -0.73305227  0.557581220  0.031439264  0.14252790 -1.77556845
-## [66,]  0.15923208 -0.027394393  1.358930582  0.66449880 -0.01546590
-## [67,] -1.75119296 -0.877074959  0.113494845 -0.47862749  1.75104687
-## [68,]  1.18483087  1.216243471  0.174306546  1.18368958  0.70420651
-## [69,]  1.20703160 -0.351249812 -0.053480405  0.80543729  1.48101932
-## [70,]  0.97764933 -0.294393117 -0.424758034  0.05331776  1.35288791
-##                x29         x30
-##  [1,] -0.329957836 -0.74532038
-##  [2,]  0.363498741 -0.48647150
-##  [3,] -1.827662733 -0.35303944
-##  [4,]  0.893777744 -0.06230052
-##  [5,] -0.719124934  1.61961511
-##  [6,]  0.940509520  1.24621141
-##  [7,] -1.871157591  2.00858996
-##  [8,]  1.147002717 -1.85441951
-##  [9,] -0.502991095 -0.46271438
-## [10,]  1.425898368  1.04310383
-## [11,] -0.019339956 -0.30383752
-## [12,] -0.638073726  0.31808070
-## [13,]  0.498271000 -0.64874901
-## [14,] -0.058246735 -1.86890434
-## [15,] -0.626216778 -1.20699658
-## [16,] -0.894620761  1.89725806
-## [17,]  2.410060215 -0.26158556
-## [18,] -0.949647251  1.78798172
-## [19,]  0.559151501  0.86730052
-## [20,] -0.211414690  0.70258094
-## [21,] -1.017854802  1.62353224
-## [22,] -1.390190989 -1.59015871
-## [23,] -1.488629309 -0.60999121
-## [24,] -1.406044634 -0.31328113
-## [25,] -1.496235482 -0.92212977
-## [26,]  0.686145924 -0.25648061
-## [27,] -0.236761631 -2.08285464
-## [28,]  1.999142429 -1.41715398
-## [29,]  0.633238683  0.61078101
-## [30,]  1.648197547  0.24152080
-## [31,]  0.502718643  1.30396482
-## [32,]  0.845467412 -0.33452858
-## [33,]  0.467247396 -0.38453990
-## [34,] -0.402055064 -0.42116821
-## [35,]  0.923526703 -0.95835523
-## [36,] -0.008055641  0.24911631
-## [37,]  1.033784238 -1.17887937
-## [38,] -0.799126982  0.49559328
-## [39,]  1.004233021 -0.17770431
-## [40,] -0.311973356  0.77473394
-## [41,] -0.886149585  1.24794638
-## [42,] -1.922254896 -0.41621676
-## [43,]  1.619700744 -0.42971794
-## [44,]  0.519269905 -0.04652522
-## [45,] -0.055849932 -0.65859154
-## [46,]  0.696417610  1.60258408
-## [47,]  0.053515679 -0.06367205
-## [48,] -1.310283497  0.86882763
-## [49,] -2.123066058  0.37837548
-## [50,] -0.208078589  1.41568817
-## [51,] -0.312786580 -0.20902676
-## [52,] -1.058235710 -2.67804459
-## [53,]  0.417223596  0.60918047
-## [54,] -0.315451534 -1.03364018
-## [55,]  0.825549134  0.49739150
-## [56,]  1.291272038 -0.97389234
-## [57,] -0.625104978 -0.09447191
-## [58,] -0.875146755 -0.55397669
-## [59,]  0.143356943 -0.24575958
-## [60,]  1.425189633 -0.65478561
-## [61,] -1.734749426 -0.98380524
-## [62,] -0.837404647  0.19640746
-## [63,] -0.715752615 -1.21652631
-## [64,]  0.374820958 -0.28504286
-## [65,]  2.383327962 -0.30034606
-## [66,] -0.463912962 -0.63862050
-## [67,] -0.426500402  1.74284790
-## [68,] -1.703095214 -1.86940060
-## [69,] -1.041497356  0.03118449
-## [70,]  0.768734962 -1.20911413
+##                x1          x2           x3          x4          x5          x6
+##  [1,] -0.62645381  1.35867955  2.401617761 -0.54252003 -0.50595746  0.45018710
+##  [2,]  0.18364332 -0.10278773 -0.039240003  1.20786781  1.34303883 -0.01855983
+##  [3,] -0.83562861  0.38767161  0.689739362  1.16040262 -0.21457941 -0.31806837
+##  [4,]  1.59528080 -0.05380504  0.028002159  0.70021365 -0.17955653 -0.92936215
+##  [5,]  0.32950777 -1.37705956 -0.743273209  1.58683345 -0.10019074 -1.48746031
+##  [6,] -0.82046838 -0.41499456  0.188792300  0.55848643  0.71266631 -1.07519230
+##  [7,]  0.48742905 -0.39428995 -1.804958629 -1.27659221 -0.07356440  1.00002880
+##  [8,]  0.73832471 -0.05931340  1.465554862 -0.57326541 -0.03763417 -0.62126669
+##  [9,]  0.57578135  1.10002537  0.153253338 -1.22461261 -0.68166048 -1.38442685
+## [10,] -0.30538839  0.76317575  2.172611670 -0.47340064 -0.32427027  1.86929062
+## [11,]  1.51178117 -0.16452360  0.475509529 -0.62036668  0.06016044  0.42510038
+## [12,]  0.38984324 -0.25336168 -0.709946431  0.04211587 -0.58889449 -0.23864710
+## [13,] -0.62124058  0.69696338  0.610726353 -0.91092165  0.53149619  1.05848305
+## [14,] -2.21469989  0.55666320 -0.934097632  0.15802877 -1.51839408  0.88642265
+## [15,]  1.12493092 -0.68875569 -1.253633400 -0.65458464  0.30655786 -0.61924305
+## [16,] -0.04493361 -0.70749516  0.291446236  1.76728727 -1.53644982  2.20610246
+## [17,] -0.01619026  0.36458196 -0.443291873  0.71670748 -0.30097613 -0.25502703
+## [18,]  0.94383621  0.76853292  0.001105352  0.91017423 -0.52827990 -1.42449465
+## [19,]  0.82122120 -0.11234621  0.074341324  0.38418536 -0.65209478 -0.14439960
+## [20,]  0.59390132  0.88110773 -0.589520946  1.68217608 -0.05689678  0.20753834
+## [21,]  0.91897737  0.39810588 -0.568668733 -0.63573645 -1.91435943  2.30797840
+## [22,]  0.78213630 -0.61202639 -0.135178615 -0.46164473  1.17658331  0.10580237
+## [23,]  0.07456498  0.34111969  1.178086997  1.43228224 -1.66497244  0.45699881
+## [24,] -1.98935170 -1.12936310 -1.523566800 -0.65069635 -0.46353040 -0.07715294
+## [25,]  0.61982575  1.43302370  0.593946188 -0.20738074 -1.11592011 -0.33400084
+## [26,] -0.05612874  1.98039990  0.332950371 -0.39280793 -0.75081900 -0.03472603
+## [27,] -0.15579551 -0.36722148  1.063099837 -0.31999287  2.08716655  0.78763961
+## [28,] -1.47075238 -1.04413463 -0.304183924 -0.27911330  0.01739562  2.07524501
+## [29,] -0.47815006  0.56971963  0.370018810  0.49418833 -1.28630053  1.02739244
+## [30,]  0.41794156 -0.13505460  0.267098791 -0.17733048 -1.64060553  1.20790840
+##                x7           x8
+##  [1,] -1.23132342 -0.164375832
+##  [2,]  0.98389557  0.420694643
+##  [3,]  0.21992480 -0.400246744
+##  [4,] -1.46725003 -1.370207878
+##  [5,]  0.52102274  0.987838267
+##  [6,] -0.15875460  1.519745025
+##  [7,]  1.46458731 -0.308740569
+##  [8,] -0.76608200 -1.253289756
+##  [9,] -0.43021175  0.642241306
+## [10,] -0.92610950 -0.044709137
+## [11,] -0.17710396 -1.733218407
+## [12,]  0.40201178  0.002131860
+## [13,] -0.73174817 -0.630300334
+## [14,]  0.83037317 -0.340968580
+## [15,] -1.20808279 -1.156572363
+## [16,] -1.04798441  1.803141908
+## [17,]  1.44115771 -0.331132036
+## [18,] -1.01584747 -1.605513412
+## [19,]  0.41197471  0.197193439
+## [20,] -0.38107605  0.263175646
+## [21,]  0.40940184 -0.985826700
+## [22,]  1.68887329 -2.888920672
+## [23,]  1.58658843 -0.640481703
+## [24,] -0.33090780  0.570507636
+## [25,] -2.28523554 -0.059723276
+## [26,]  2.49766159 -0.098178744
+## [27,]  0.66706617  0.560820729
+## [28,]  0.54132734 -1.186458639
+## [29,] -0.01339952  1.096777044
+## [30,]  0.51010842 -0.005344028
 ## 
 ## $y
-##             [,1]
-##  [1,]   83.55837
-##  [2,]  -79.22639
-##  [3,]   57.48346
-##  [4,] -535.71429
-##  [5,]   46.55548
-##  [6,] -150.68024
-##  [7,] -209.42155
-##  [8,] -212.89529
-##  [9,] -153.29210
-## [10,]  144.79305
-## [11,] -394.78917
-## [12,]  186.91369
-## [13,] -192.13601
-## [14,] -190.37871
-## [15,]  545.72540
-## [16,]  238.76026
-## [17,]  262.32243
-## [18,]   31.27464
-## [19,]  -63.80065
-## [20,] -102.38271
-## [21,] -263.16554
-## [22,] -177.05342
-## [23,]  224.48093
-## [24,]  128.04619
-## [25,]  358.87738
-## [26,] -589.38465
-## [27,]  -14.64371
-## [28,]  -50.19705
-## [29,] -219.78587
-## [30,]  -83.55623
-## [31,]  285.05363
-## [32,] -419.24500
-## [33,] -123.46498
-## [34,] -272.74057
-## [35,] -498.24267
-## [36,] -204.08595
-## [37,]  223.22484
-## [38,] -105.51662
-## [39,] -343.53958
-## [40,]  477.56572
-## [41,] -332.72384
-## [42,]  971.52458
-## [43,]  -52.40933
-## [44,] -366.35533
-## [45,]  184.10421
-## [46,]  -84.01286
-## [47,] -419.07981
-## [48,]  374.03217
-## [49,]  228.49073
-## [50,]  225.73671
-## [51,] -469.32277
-## [52,] -567.83235
-## [53,]  225.65309
-## [54,]  490.73432
-## [55,]  111.23063
-## [56,] -363.03602
-## [57,]  223.21508
-## [58,]  174.94572
-## [59,] -344.73471
-## [60,]  -54.98772
-## [61,]  273.38115
-## [62,] -323.79485
-## [63,] -330.33833
-## [64,] -155.65367
-## [65,]  202.42394
-## [66,]  349.01112
-## [67,] -240.42782
-## [68,]  111.42441
-## [69,] -121.40165
-## [70,]  412.50865
+##              [,1]
+##  [1,]  465.669135
+##  [2,]  -11.952762
+##  [3,]  137.421535
+##  [4,]    3.182645
+##  [5,] -181.768726
+##  [6,]   56.657509
+##  [7,] -293.886479
+##  [8,]  296.862888
+##  [9,]    3.903219
+## [10,]  391.141150
+## [11,]   54.640555
+## [12,]  -87.504379
+## [13,]   41.627811
+## [14,] -124.710894
+## [15,] -231.235003
+## [16,]  211.810185
+## [17,] -115.888380
+## [18,]   66.781892
+## [19,]   63.203483
+## [20,]  108.648740
+## [21,] -160.610868
+## [22,]  -83.766863
+## [23,]  161.812043
+## [24,] -298.824706
+## [25,]   98.320441
+## [26,]  129.841644
+## [27,]  162.299909
+## [28,]  -79.709583
+## [29,]   95.118655
+## [30,]  103.527384
 ## 
 ## $beta
-##  [1]   0.00000   0.00000   0.00000   0.00000 148.51367   0.00000 139.94825
-##  [8] 121.99435   0.00000  33.66851   0.00000   0.00000  15.03216   0.00000
-## [15]  44.70316   0.00000  30.31397   0.00000   0.00000   0.00000  35.69334
-## [22]  42.36839 134.44887   0.00000   0.00000   0.00000   0.00000   0.00000
-## [29]   0.00000   0.00000</code></pre>
+## [1]   2.200188   0.000000 163.602113  36.838699   0.000000  26.578800   0.000000
+## [8]   6.052930</code></pre>
+</div>
+<div id="生成数据-计算一些常用指标-并保存" class="section level3">
+<h3>生成数据 计算一些常用指标 并保存</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>methods<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Lasso&quot;</span>,<span class="st">&quot;Forward stepwise&quot;</span>,<span class="st">&quot;Relaxed lasso&quot;</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>rho.vec <span class="ot">=</span><span class="fu">c</span>(<span class="fl">0.35</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>beta.type <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>snr.vec <span class="ot">=</span> <span class="fu">exp</span>(<span class="fu">seq</span>(<span class="fu">log</span>(<span class="fl">0.05</span>),<span class="fu">log</span>(<span class="dv">6</span>),<span class="at">length=</span><span class="dv">5</span>))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>file.list<span class="ot">=</span><span class="fu">compute.index</span>(n,p,<span class="at">nval=</span><span class="dv">5</span>,<span class="at">methods =</span> methods,<span class="at">file=</span><span class="cn">NULL</span>,<span class="at">rho.vec=</span>rho.vec,<span class="at">snr.vec=</span>snr.vec,<span class="at">beta.type =</span> beta.type)</span></code></pre></div>
+<pre><code>## ..... NEW SIMULATION .....
+## --------------------------
+## File: rd/sim.n30.p8.beta1.rho0.35.snr0.05.rds
+## 
+## 
+## ..... NEW SIMULATION .....
+## --------------------------
+## File: rd/sim.n30.p8.beta1.rho0.35.snr0.17.rds
+## 
+## 
+## ..... NEW SIMULATION .....
+## --------------------------
+## File: rd/sim.n30.p8.beta1.rho0.35.snr0.55.rds
+## 
+## 
+## ..... NEW SIMULATION .....
+## --------------------------
+## File: rd/sim.n30.p8.beta1.rho0.35.snr1.81.rds
+## 
+## 
+## ..... NEW SIMULATION .....
+## --------------------------
+## File: rd/sim.n30.p8.beta1.rho0.35.snr6.rds</code></pre>
+</div>
+<div id="画图输出" class="section level3">
+<h3>画图输出</h3>
+<div id="risk" class="section level4">
+<h4>risk</h4>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#file.list = system(paste0(&quot;./data/rd/sim.n&quot;,n,&quot;.p&quot;,p,&quot;.*.rds&quot;),intern=TRUE)</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>method.nums <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">=</span> <span class="fl">0.35</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="do">## risk</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_index</span>(file.list, <span class="at">what=</span><span class="st">&quot;risk&quot;</span>,<span class="at">method.nums=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">method.names=</span>methods,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">make.pdf=</span><span class="cn">FALSE</span>,<span class="at">fig.dir=</span><span class="cn">NULL</span>,<span class="at">file.name=</span><span class="st">&quot;risk&quot;</span>, <span class="at">h=</span><span class="dv">4</span>, <span class="at">w=</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="error" class="section level4">
+<h4>error</h4>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_index</span>(file.list, <span class="at">what=</span><span class="st">&quot;error&quot;</span>,<span class="at">method.nums=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">method.names=</span>methods,</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">make.pdf=</span><span class="cn">FALSE</span>,<span class="at">fig.dir=</span><span class="st">&quot;.&quot;</span>,<span class="at">file.name=</span><span class="st">&quot;error&quot;</span>, <span class="at">h=</span><span class="dv">4</span>, <span class="at">w=</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="nonzero" class="section level4">
+<h4>nonzero</h4>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_index</span>(file.list, <span class="at">what=</span><span class="st">&quot;nonzero&quot;</span>,<span class="at">method.nums=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">method.names=</span>methods,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">make.pdf=</span><span class="cn">FALSE</span>,<span class="at">fig.dir=</span><span class="st">&quot;.&quot;</span>,<span class="at">file.name=</span><span class="st">&quot;nonzero&quot;</span>, <span class="at">h=</span><span class="dv">4</span>, <span class="at">w=</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="f" class="section level4">
+<h4>F</h4>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_index</span>(file.list, <span class="at">what=</span><span class="st">&quot;F&quot;</span>,<span class="at">method.nums=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">method.names=</span>methods,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">make.pdf=</span><span class="cn">FALSE</span>,<span class="at">fig.dir=</span><span class="st">&quot;.&quot;</span>,<span class="at">file.name=</span><span class="st">&quot;F&quot;</span>, <span class="at">h=</span><span class="dv">4</span>, <span class="at">w=</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="prop" class="section level4">
+<h4>Prop</h4>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_index</span>(file.list, <span class="at">what=</span><span class="st">&quot;prop&quot;</span>,<span class="at">method.nums=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="at">method.names=</span>methods,</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">make.pdf=</span><span class="cn">FALSE</span>,<span class="at">fig.dir=</span><span class="st">&quot;.&quot;</span>,<span class="at">file.name=</span><span class="st">&quot;prop&quot;</span>, <span class="at">h=</span><span class="dv">4</span>, <span class="at">w=</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## Coordinate system already present. Adding new coordinate system, which will replace the existing one.</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+</div>
+</div>
+<div id="rcpp程序与r程序比较" class="section level2">
+<h2>Rcpp程序与R程序比较</h2>
+<p>考虑二元随机变量<span class="math inline">\(X=(X_1,X_2)\)</span>, 密度函数: <span class="math display">\[
+f(x, y) \propto\left(\begin{array}{l}
+n \\
+x
+\end{array}\right) y^{x+a-1}(1-y)^{n-x+b-1}, \quad x=0,1, \ldots, n, 0 \leq y \leq 1
+\]</span></p>
+<p>用Gibbs采样法分别在<code>R</code>与<code>C</code>中运行, 比较一下效率</p>
+<div id="gibbsr" class="section level3">
+<h3>GibbsR</h3>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>b<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">25</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>N<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>X<span class="ot">=</span><span class="fu">gibbsR</span>(a,b,n,N)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(X[,<span class="dv">1</span>],X[,<span class="dv">2</span>],<span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>,<span class="at">main =</span> <span class="st">&quot;gibbsR&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+<div id="gibbsc" class="section level3">
+<h3>GibbsC</h3>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Xc<span class="ot">=</span><span class="fu">gibbsC</span>(a,b,n,N)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Xc[,<span class="dv">1</span>],Xc[,<span class="dv">2</span>],<span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;y&quot;</span>,<span class="at">main=</span><span class="st">&quot;gibbsC&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>用<code>qqplot</code>比较一下产生的随机变量是否一致</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqplot</span>(X[,<span class="dv">1</span>],Xc[,<span class="dv">1</span>],<span class="at">xlab =</span> <span class="st">&quot;gibbsR&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;gibbsC&quot;</span>,<span class="at">main=</span><span class="st">&quot;第1维变量QQ图&quot;</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqplot</span>(X[,<span class="dv">2</span>],Xc[,<span class="dv">2</span>], <span class="at">xlab =</span> <span class="st">&quot;gibbsR&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;gibbsC&quot;</span>,<span class="at">main=</span><span class="st">&quot;第2维变量QQ图&quot;</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>比较运行时间</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ts<span class="ot">=</span><span class="fu">microbenchmark</span>(<span class="at">gibbR=</span><span class="fu">gibbsR</span>(a,b,n,N), <span class="at">gibbC=</span><span class="fu">gibbsC</span>(a,b,n,N))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ts)[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>)]</span></code></pre></div>
+<pre><code>##    expr       lq   median       uq
+## 1 gibbR 48.10720 55.19855 66.30735
+## 2 gibbC  4.08125  4.50675  5.41230</code></pre>
+</div>
 </div>
 
 
