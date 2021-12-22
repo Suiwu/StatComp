@@ -3,35 +3,21 @@
 
 #' @title A Gibbs sampler using Rcpp
 #' @description A Gibbs sampler using Rcpp
+#' @param a  param for original distribution
+#' @param b  param for original distribution
+#' @param n  param for original distribution
 #' @param N the number of samples
-#' @param thin the number of between-sample random numbers
+#' 
 #' @return a random sample of size \code{n}
 #' @examples
 #' \dontrun{
-#' rnC <- gibbsC(100,10)
+#' rnC <- gibbsC(1,1,25,10000)
 #' par(mfrow=c(2,1));
 #' plot(rnC[,1],type='l')
 #' plot(rnC[,2],type='l')
 #' }
 #' @export
-gibbsC <- function(N, thin) {
-    .Call('_StatComp21055_gibbsC', PACKAGE = 'StatComp21055', N, thin)
-}
-
-#' @title Use three inputs to predict response using Rcpp.
-#' @description The prediction model is described in http://www.babelgraph.org/wp/?p=358.
-#' @param age the first predictor (numeric)
-#' @param female the second predictor (logical)
-#' @param ily the third predictor (logical)
-#' @return a random sample of size \code{n}
-#' @examples
-#' \dontrun{
-#' data(data)
-#' attach(data)
-#' res <- vaccC(age,female,ily)
-#' }
-#' @export
-vaccC <- function(age, female, ily) {
-    .Call('_StatComp21055_vaccC', PACKAGE = 'StatComp21055', age, female, ily)
+gibbsC <- function(a, b, n, N) {
+    .Call('_StatComp21055_gibbsC', PACKAGE = 'StatComp21055', a, b, n, N)
 }
 

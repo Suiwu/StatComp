@@ -4,12 +4,16 @@
 \alias{gibbsC}
 \title{A Gibbs sampler using Rcpp}
 \usage{
-gibbsC(N, thin)
+gibbsC(a, b, n, N)
 }
 \arguments{
-\item{N}{the number of samples}
+\item{a}{param for original distribution}
 
-\item{thin}{the number of between-sample random numbers}
+\item{b}{param for original distribution}
+
+\item{n}{param for original distribution}
+
+\item{N}{the number of samples}
 }
 \value{
 a random sample of size \code{n}
@@ -19,7 +23,7 @@ A Gibbs sampler using Rcpp
 }
 \examples{
 \dontrun{
-rnC <- gibbsC(100,10)
+rnC <- gibbsC(1,1,25,10000)
 par(mfrow=c(2,1));
 plot(rnC[,1],type='l')
 plot(rnC[,2],type='l')

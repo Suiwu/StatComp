@@ -7,7 +7,7 @@
 Fmean(Y)
 }
 \arguments{
-\item{data}{A shapes data (landmark\*dim \*num)}
+\item{Y}{A shapes data (landmark\*dim \*num)}
 }
 \value{
 A value in shapes space.

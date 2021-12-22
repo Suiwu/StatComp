@@ -30,7 +30,7 @@ objfunF =function(w, Y){
 
 #' @title Frechet mean 
 #' @description Compute Frechet mean for shapes data
-#' @param data A shapes data (landmark\*dim \*num)
+#' @param Y A shapes data (landmark\*dim \*num)
 #' @return A value in shapes space.
 #' @examples
 #' \dontrun{

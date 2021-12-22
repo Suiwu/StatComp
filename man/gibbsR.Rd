@@ -4,12 +4,16 @@
 \alias{gibbsR}
 \title{A Gibbs sampler using R}
 \usage{
-gibbsR(N, thin)
+gibbsR(a, b, n, N)
 }
 \arguments{
-\item{N}{the number of samples}
+\item{a}{param for original distribution}
 
-\item{thin}{the number of between-sample random numbers}
+\item{b}{param for original distribution}
+
+\item{n}{param for original distribution}
+
+\item{N}{the number of samples}
 }
 \value{
 a random sample of size \code{n}
@@ -19,7 +23,7 @@ A Gibbs sampler using R
 }
 \examples{
 \dontrun{
-rnR <- gibbsR(100,10)
+rnR <- gibbsR(1,1,25,10000)
 par(mfrow=c(2,1));
 plot(rnR[,1],type='l')
 plot(rnR[,2],type='l')

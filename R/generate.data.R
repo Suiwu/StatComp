@@ -14,7 +14,7 @@
 #' \item{x}{Design matrix of predictors.}
 #' \item{y}{Response variable.}
 #' \item{beta}{The true coefficients.}
-#' 
+#' @importFrom("stats", "cov", "rnorm")
 #' @examples
 #' \dontrun{
 #' # Generate simulated data
