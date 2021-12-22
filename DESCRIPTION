@@ -9,8 +9,11 @@ Description: This is the final review for 'StatComp' course,
   including homework and some my own research function.
 License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.7),microbenchmark, knitr, rmarkdown
+Support: ggplot2, xtable, mvtnorm, bootstrap, boot, Ball, RANN, energy
 LinkingTo: Rcpp
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr
+URL: http://github.com/SuiWu/StatComp
+BugReports: http://github.com/SuiWu/StatComp/issues
 Encoding: UTF-8
 

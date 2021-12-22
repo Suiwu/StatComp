@@ -9,10 +9,7 @@
   This is the final review for 'StatComp' course, 
   including homework and some my own research function.
 }
-\details{
-  This section should provide a more detailed overview of how to use the
-  package, including the most important functions.
-}
+
 \author{
 Jingguo Lan, ljg07158273@mail.ustc.edu.cn.
 

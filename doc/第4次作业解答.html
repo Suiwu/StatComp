@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 第4次作业解答 | 统计计算作业汇总</title>
+  <meta name="description" content="这是用R的bookdown功能制作中文图书的模板，输出格式为bookdown::gitbook和bookdown::pdf_book." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 第4次作业解答 | 统计计算作业汇总" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="这是用R的bookdown功能制作中文图书的模板，输出格式为bookdown::gitbook和bookdown::pdf_book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 第4次作业解答 | 统计计算作业汇总" />
+  
+  <meta name="twitter:description" content="这是用R的bookdown功能制作中文图书的模板，输出格式为bookdown::gitbook和bookdown::pdf_book." />
+  
+
+<meta name="author" content="兰敬国" />
+
+
+<meta name="date" content="2021-12-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="第3次作业解答.html"/>
+<link rel="next" href="第5次作业解答.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX","output/SVG"],
+  extensions: ["tex2jax.js","MathMenu.js","MathZoom.js"],
+  TeX: {
+    extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+   src="../../../MathJax/MathJax.js">
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>简介</a></li>
+<li class="chapter" data-level="1" data-path="第1次作业解答.html"><a href="第1次作业解答.html"><i class="fa fa-check"></i><b>1</b> 第1次作业解答</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="第1次作业解答.html"><a href="第1次作业解答.html#question"><i class="fa fa-check"></i><b>1.1</b> Question</a></li>
+<li class="chapter" data-level="1.2" data-path="第1次作业解答.html"><a href="第1次作业解答.html#answer"><i class="fa fa-check"></i><b>1.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="第1次作业解答.html"><a href="第1次作业解答.html#texts"><i class="fa fa-check"></i><b>1.2.1</b> Texts</a></li>
+<li class="chapter" data-level="1.2.2" data-path="第1次作业解答.html"><a href="第1次作业解答.html#figures"><i class="fa fa-check"></i><b>1.2.2</b> Figures</a></li>
+<li class="chapter" data-level="1.2.3" data-path="第1次作业解答.html"><a href="第1次作业解答.html#ggplot2"><i class="fa fa-check"></i><b>1.2.3</b> ggplot2</a></li>
+<li class="chapter" data-level="1.2.4" data-path="第1次作业解答.html"><a href="第1次作业解答.html#tables"><i class="fa fa-check"></i><b>1.2.4</b> Tables</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="第2次作业解答.html"><a href="第2次作业解答.html"><i class="fa fa-check"></i><b>2</b> 第2次作业解答</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="第2次作业解答.html"><a href="第2次作业解答.html#question-1"><i class="fa fa-check"></i><b>2.1</b> Question</a></li>
+<li class="chapter" data-level="2.2" data-path="第2次作业解答.html"><a href="第2次作业解答.html#answer-1"><i class="fa fa-check"></i><b>2.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="第2次作业解答.html"><a href="第2次作业解答.html#section"><i class="fa fa-check"></i><b>2.2.1</b> 3.4</a></li>
+<li class="chapter" data-level="2.2.2" data-path="第2次作业解答.html"><a href="第2次作业解答.html#section-1"><i class="fa fa-check"></i><b>2.2.2</b> 3.11</a></li>
+<li class="chapter" data-level="2.2.3" data-path="第2次作业解答.html"><a href="第2次作业解答.html#section-2"><i class="fa fa-check"></i><b>2.2.3</b> 3.20</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="第3次作业解答.html"><a href="第3次作业解答.html"><i class="fa fa-check"></i><b>3</b> 第3次作业解答</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="第3次作业解答.html"><a href="第3次作业解答.html#question-2"><i class="fa fa-check"></i><b>3.1</b> Question</a></li>
+<li class="chapter" data-level="3.2" data-path="第3次作业解答.html"><a href="第3次作业解答.html#answer-2"><i class="fa fa-check"></i><b>3.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-3"><i class="fa fa-check"></i><b>3.2.1</b> 5.4</a></li>
+<li class="chapter" data-level="3.2.2" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-4"><i class="fa fa-check"></i><b>3.2.2</b> 5.9</a></li>
+<li class="chapter" data-level="3.2.3" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-5"><i class="fa fa-check"></i><b>3.2.3</b> 5.13</a></li>
+<li class="chapter" data-level="3.2.4" data-path="第3次作业解答.html"><a href="第3次作业解答.html#section-6"><i class="fa fa-check"></i><b>3.2.4</b> 5.14</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="第4次作业解答.html"><a href="第4次作业解答.html"><i class="fa fa-check"></i><b>4</b> 第4次作业解答</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="第4次作业解答.html"><a href="第4次作业解答.html#question-3"><i class="fa fa-check"></i><b>4.1</b> Question</a></li>
+<li class="chapter" data-level="4.2" data-path="第4次作业解答.html"><a href="第4次作业解答.html#answer-3"><i class="fa fa-check"></i><b>4.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="第4次作业解答.html"><a href="第4次作业解答.html#section-7"><i class="fa fa-check"></i><b>4.2.1</b> 6.5</a></li>
+<li class="chapter" data-level="4.2.2" data-path="第4次作业解答.html"><a href="第4次作业解答.html#a"><i class="fa fa-check"></i><b>4.2.2</b> 6.A</a></li>
+<li class="chapter" data-level="4.2.3" data-path="第4次作业解答.html"><a href="第4次作业解答.html#discussion"><i class="fa fa-check"></i><b>4.2.3</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="第5次作业解答.html"><a href="第5次作业解答.html"><i class="fa fa-check"></i><b>5</b> 第5次作业解答</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="第5次作业解答.html"><a href="第5次作业解答.html#question-4"><i class="fa fa-check"></i><b>5.1</b> Question</a></li>
+<li class="chapter" data-level="5.2" data-path="第5次作业解答.html"><a href="第5次作业解答.html#answer-4"><i class="fa fa-check"></i><b>5.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="第5次作业解答.html"><a href="第5次作业解答.html#多元正态性的偏度检验6.8"><i class="fa fa-check"></i><b>5.2.1</b> 多元正态性的偏度检验(6.8)</a></li>
+<li class="chapter" data-level="5.2.2" data-path="第5次作业解答.html"><a href="第5次作业解答.html#多元正态性偏度检验的功效6.10"><i class="fa fa-check"></i><b>5.2.2</b> 多元正态性偏度检验的功效(6.10)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="第6次作业解答.html"><a href="第6次作业解答.html"><i class="fa fa-check"></i><b>6</b> 第6次作业解答</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="第6次作业解答.html"><a href="第6次作业解答.html#question-5"><i class="fa fa-check"></i><b>6.1</b> Question</a></li>
+<li class="chapter" data-level="6.2" data-path="第6次作业解答.html"><a href="第6次作业解答.html#answer-5"><i class="fa fa-check"></i><b>6.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="第6次作业解答.html"><a href="第6次作业解答.html#section-8"><i class="fa fa-check"></i><b>6.2.1</b> 7.7, 7.8, 7.9</a></li>
+<li class="chapter" data-level="6.2.2" data-path="第6次作业解答.html"><a href="第6次作业解答.html#b"><i class="fa fa-check"></i><b>6.2.2</b> 7.B</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="第7次作业解答.html"><a href="第7次作业解答.html"><i class="fa fa-check"></i><b>7</b> 第7次作业解答</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="第7次作业解答.html"><a href="第7次作业解答.html#question-6"><i class="fa fa-check"></i><b>7.1</b> Question</a></li>
+<li class="chapter" data-level="7.2" data-path="第7次作业解答.html"><a href="第7次作业解答.html#answer-6"><i class="fa fa-check"></i><b>7.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="第7次作业解答.html"><a href="第7次作业解答.html#section-9"><i class="fa fa-check"></i><b>7.2.1</b> 8.2</a></li>
+<li class="chapter" data-level="7.2.2" data-path="第7次作业解答.html"><a href="第7次作业解答.html#discussion-1"><i class="fa fa-check"></i><b>7.2.2</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="第7次作业解答.html"><a href="第7次作业解答.html#unequal-variances-and-unequal-expectations"><i class="fa fa-check"></i><b>7.3</b> Unequal variances and unequal expectations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="第8次作业解答.html"><a href="第8次作业解答.html"><i class="fa fa-check"></i><b>8</b> 第8次作业解答</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="第8次作业解答.html"><a href="第8次作业解答.html#question-7"><i class="fa fa-check"></i><b>8.1</b> Question</a></li>
+<li class="chapter" data-level="8.2" data-path="第8次作业解答.html"><a href="第8次作业解答.html#answer-7"><i class="fa fa-check"></i><b>8.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="第8次作业解答.html"><a href="第8次作业解答.html#section-10"><i class="fa fa-check"></i><b>8.2.1</b> 9.3</a></li>
+<li class="chapter" data-level="8.2.2" data-path="第8次作业解答.html"><a href="第8次作业解答.html#section-11"><i class="fa fa-check"></i><b>8.2.2</b> 9.8</a></li>
+<li class="chapter" data-level="8.2.3" data-path="第8次作业解答.html"><a href="第8次作业解答.html#discussion-2"><i class="fa fa-check"></i><b>8.2.3</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="第9次作业解答.html"><a href="第9次作业解答.html"><i class="fa fa-check"></i><b>9</b> 第9次作业解答</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="第9次作业解答.html"><a href="第9次作业解答.html#question-8"><i class="fa fa-check"></i><b>9.1</b> Question</a></li>
+<li class="chapter" data-level="9.2" data-path="第9次作业解答.html"><a href="第9次作业解答.html#answer-8"><i class="fa fa-check"></i><b>9.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="第9次作业解答.html"><a href="第9次作业解答.html#section-14"><i class="fa fa-check"></i><b>9.2.1</b> 11.3</a></li>
+<li class="chapter" data-level="9.2.2" data-path="第9次作业解答.html"><a href="第9次作业解答.html#section-15"><i class="fa fa-check"></i><b>9.2.2</b> 11.5</a></li>
+<li class="chapter" data-level="9.2.3" data-path="第9次作业解答.html"><a href="第9次作业解答.html#discussion-3"><i class="fa fa-check"></i><b>9.2.3</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="第10次作业解答.html"><a href="第10次作业解答.html"><i class="fa fa-check"></i><b>10</b> 第10次作业解答</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="第10次作业解答.html"><a href="第10次作业解答.html#question-9"><i class="fa fa-check"></i><b>10.1</b> Question</a></li>
+<li class="chapter" data-level="10.2" data-path="第10次作业解答.html"><a href="第10次作业解答.html#answer-9"><i class="fa fa-check"></i><b>10.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p204-1"><i class="fa fa-check"></i><b>10.2.1</b> P204-1</a></li>
+<li class="chapter" data-level="10.2.2" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p204-5"><i class="fa fa-check"></i><b>10.2.2</b> P204-5</a></li>
+<li class="chapter" data-level="10.2.3" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p214-1"><i class="fa fa-check"></i><b>10.2.3</b> P214-1</a></li>
+<li class="chapter" data-level="10.2.4" data-path="第10次作业解答.html"><a href="第10次作业解答.html#p214-7"><i class="fa fa-check"></i><b>10.2.4</b> P214-7</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="第11次作业解答.html"><a href="第11次作业解答.html"><i class="fa fa-check"></i><b>11</b> 第11次作业解答</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="第11次作业解答.html"><a href="第11次作业解答.html#question-10"><i class="fa fa-check"></i><b>11.1</b> Question</a></li>
+<li class="chapter" data-level="11.2" data-path="第11次作业解答.html"><a href="第11次作业解答.html#answer-10"><i class="fa fa-check"></i><b>11.2</b> Answer</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="第11次作业解答.html"><a href="第11次作业解答.html#gibbs-in-r"><i class="fa fa-check"></i><b>11.2.1</b> Gibbs in R</a></li>
+<li class="chapter" data-level="11.2.2" data-path="第11次作业解答.html"><a href="第11次作业解答.html#gibbs-in-c"><i class="fa fa-check"></i><b>11.2.2</b> Gibbs in C</a></li>
+<li class="chapter" data-level="11.2.3" data-path="第11次作业解答.html"><a href="第11次作业解答.html#qq-plot"><i class="fa fa-check"></i><b>11.2.3</b> QQ plot</a></li>
+<li class="chapter" data-level="11.2.4" data-path="第11次作业解答.html"><a href="第11次作业解答.html#time"><i class="fa fa-check"></i><b>11.2.4</b> Time</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">统计计算作业汇总</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="第4次作业解答" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> 第4次作业解答</h1>
+<div id="question-3" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Question</h2>
+<ul>
+<li><p>Exercises 6.5 and 6.A</p></li>
+<li><p>If we obtain the powers for two methods under a particular simulation setting with 10,000 experiments: say, 0.651 for one method and 0.676 for another method. We want to know if the
+powers are different at 0.05 level.</p></li>
+<li><p>What is the corresponding hypothesis test problem?</p></li>
+<li><p>What test should we use? Z-test, two-sample t-test, paired-t test or McNemar test? Why?</p></li>
+<li><p>Please provide the least necessary information for hypothesis testing</p></li>
+</ul>
+</div>
+<div id="answer-3" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Answer</h2>
+<div id="section-7" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> 6.5</h3>
+<p>Suppose a 95% symmetric t-interval is applied to estimate a mean, but the
+sample data are non-normal. Then the probability that the confidence interval
+covers the mean is not necessarily equal to 0.95. Use a Monte Carlo experiment
+to estimate the coverage probability of the t-interval for random samples of
+<span class="math inline">\(χ^2(2)\)</span> data with sample size n = 20. Compare your t-interval results with the
+simulation results in Example 6.4. (The t-interval should be more robust to
+departures from normality than the interval for variance.)</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="第4次作业解答.html#cb30-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb30-2"><a href="第4次作业解答.html#cb30-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="dv">1000</span> </span>
+<span id="cb30-3"><a href="第4次作业解答.html#cb30-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
+<span id="cb30-4"><a href="第4次作业解答.html#cb30-4" aria-hidden="true" tabindex="-1"></a>UCL <span class="ot">&lt;-</span> <span class="fu">replicate</span>(m,<span class="at">expr =</span> {</span>
+<span id="cb30-5"><a href="第4次作业解答.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(n, <span class="at">df =</span> <span class="dv">2</span>)</span>
+<span id="cb30-6"><a href="第4次作业解答.html#cb30-6" aria-hidden="true" tabindex="-1"></a>  (n<span class="dv">-1</span>) <span class="sc">*</span> <span class="fu">var</span>(x) <span class="sc">/</span> <span class="fu">qchisq</span>(alpha, <span class="at">df =</span> n<span class="dv">-1</span>)</span>
+<span id="cb30-7"><a href="第4次作业解答.html#cb30-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb30-8"><a href="第4次作业解答.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;coverage probability=&quot;</span>, <span class="fu">mean</span>(UCL <span class="sc">&gt;</span> <span class="dv">4</span>))</span></code></pre></div>
+<pre><code>## coverage probability= 0.783</code></pre>
+<p>the 0.95 confidence interval is<span class="math inline">\(\left[\bar{X}-\frac{S}{\sqrt{n}} t_{n-1}(0.975), \bar{X}+\frac{S}{\sqrt{n}} t_{n-1}(0.975)\right]\)</span></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="第4次作业解答.html#cb32-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span> </span>
+<span id="cb32-2"><a href="第4次作业解答.html#cb32-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">05</span></span>
+<span id="cb32-3"><a href="第4次作业解答.html#cb32-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(n, <span class="at">df =</span> <span class="dv">2</span>)</span>
+<span id="cb32-4"><a href="第4次作业解答.html#cb32-4" aria-hidden="true" tabindex="-1"></a>prob <span class="ot">&lt;-</span> <span class="fu">replicate</span>(m,<span class="at">expr =</span> {</span>
+<span id="cb32-5"><a href="第4次作业解答.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rchisq</span>(n, <span class="at">df =</span> <span class="dv">2</span>)</span>
+<span id="cb32-6"><a href="第4次作业解答.html#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>(<span class="fu">mean</span>(x)<span class="sc">-</span><span class="dv">2</span>) <span class="sc">&lt;</span> <span class="fu">sd</span>(x) <span class="sc">*</span> <span class="fu">qt</span>(alpha<span class="sc">/</span><span class="dv">2</span>, <span class="at">df =</span> n<span class="dv">-1</span>,<span class="at">lower.tail =</span> <span class="cn">FALSE</span>)<span class="sc">/</span><span class="fu">sqrt</span>(n)</span>
+<span id="cb32-7"><a href="第4次作业解答.html#cb32-7" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb32-8"><a href="第4次作业解答.html#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;coverage probability=&quot;</span>, <span class="fu">mean</span>(prob))</span></code></pre></div>
+<pre><code>## coverage probability= 0.921</code></pre>
+<p>如果样本不是正态分布的，那么置信区间覆盖方差的概率就不一定接近0.95，但t-interval表现更稳健。</p>
+</div>
+<div id="a" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> 6.A</h3>
+<p>Use Monte Carlo simulation to investigate whether the empirical Type I error rate of the t-test is approximately equal to the nominal significance level<span class="math inline">\(\alpha\)</span>, when the sampled population is non-normal. The t-test is robust to mild departures from normality.
+Discuss the simulation results for the cases where the sampled population is
+(i) <span class="math inline">\(X^2(1)\)</span>, (ii) Uniform<span class="math inline">\((0,2)\)</span>, and (iii) Exponential(rate=1).</p>
+<p>In each case, test
+<span class="math inline">\(H_0 : \mu= \mu_0 ~~vs~~ H_0 : \mu \neq \mu_0\)</span>, where <span class="math inline">\(\mu_0\)</span> is the mean of <span class="math inline">\(X^2(1)\)</span>, Uniform<span class="math inline">\((0,2)\)</span>, and Exponential(1), respectively.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="第4次作业解答.html#cb34-1" aria-hidden="true" tabindex="-1"></a>num<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>) <span class="co"># 不同样本量</span></span>
+<span id="cb34-2"><a href="第4次作业解答.html#cb34-2" aria-hidden="true" tabindex="-1"></a>m<span class="ot">&lt;-</span><span class="dv">10000</span></span>
+<span id="cb34-3"><a href="第4次作业解答.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="第4次作业解答.html#cb34-4" aria-hidden="true" tabindex="-1"></a>er<span class="ot">&lt;-</span><span class="cn">NULL</span></span>
+<span id="cb34-5"><a href="第4次作业解答.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> num){</span>
+<span id="cb34-6"><a href="第4次作业解答.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  cv<span class="ot">&lt;-</span><span class="fu">qt</span>(<span class="fl">0.975</span>,n<span class="dv">-1</span>)</span>
+<span id="cb34-7"><a href="第4次作业解答.html#cb34-7" aria-hidden="true" tabindex="-1"></a>  er1<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>m,<span class="at">FUN =</span> <span class="cf">function</span>(o){</span>
+<span id="cb34-8"><a href="第4次作业解答.html#cb34-8" aria-hidden="true" tabindex="-1"></a>  x<span class="ot">&lt;-</span><span class="fu">rchisq</span>(n,<span class="dv">1</span>)</span>
+<span id="cb34-9"><a href="第4次作业解答.html#cb34-9" aria-hidden="true" tabindex="-1"></a>  m<span class="ot">&lt;-</span><span class="fu">mean</span>(x)</span>
+<span id="cb34-10"><a href="第4次作业解答.html#cb34-10" aria-hidden="true" tabindex="-1"></a>  se<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">var</span>(x))</span>
+<span id="cb34-11"><a href="第4次作业解答.html#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>((m<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">sqrt</span>(n)<span class="sc">/</span>se)<span class="sc">&gt;=</span>cv</span>
+<span id="cb34-12"><a href="第4次作业解答.html#cb34-12" aria-hidden="true" tabindex="-1"></a>  })) </span>
+<span id="cb34-13"><a href="第4次作业解答.html#cb34-13" aria-hidden="true" tabindex="-1"></a>  er2<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>m,<span class="at">FUN =</span> <span class="cf">function</span>(o){</span>
+<span id="cb34-14"><a href="第4次作业解答.html#cb34-14" aria-hidden="true" tabindex="-1"></a>  x<span class="ot">&lt;-</span><span class="fu">runif</span>(n,<span class="dv">0</span>,<span class="dv">2</span>)</span>
+<span id="cb34-15"><a href="第4次作业解答.html#cb34-15" aria-hidden="true" tabindex="-1"></a>  m<span class="ot">&lt;-</span><span class="fu">mean</span>(x)</span>
+<span id="cb34-16"><a href="第4次作业解答.html#cb34-16" aria-hidden="true" tabindex="-1"></a>  se<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">var</span>(x))</span>
+<span id="cb34-17"><a href="第4次作业解答.html#cb34-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>((m<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">sqrt</span>(n)<span class="sc">/</span>se)<span class="sc">&gt;=</span>cv</span>
+<span id="cb34-18"><a href="第4次作业解答.html#cb34-18" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb34-19"><a href="第4次作业解答.html#cb34-19" aria-hidden="true" tabindex="-1"></a>  er3<span class="ot">&lt;-</span><span class="fu">mean</span>(<span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>m,<span class="at">FUN =</span> <span class="cf">function</span>(o){</span>
+<span id="cb34-20"><a href="第4次作业解答.html#cb34-20" aria-hidden="true" tabindex="-1"></a>  x<span class="ot">&lt;-</span><span class="fu">rexp</span>(n,<span class="dv">1</span>)</span>
+<span id="cb34-21"><a href="第4次作业解答.html#cb34-21" aria-hidden="true" tabindex="-1"></a>  m<span class="ot">&lt;-</span><span class="fu">mean</span>(x)</span>
+<span id="cb34-22"><a href="第4次作业解答.html#cb34-22" aria-hidden="true" tabindex="-1"></a>  se<span class="ot">&lt;-</span><span class="fu">sqrt</span>(<span class="fu">var</span>(x))</span>
+<span id="cb34-23"><a href="第4次作业解答.html#cb34-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>((m<span class="dv">-1</span>)<span class="sc">*</span><span class="fu">sqrt</span>(n)<span class="sc">/</span>se)<span class="sc">&gt;=</span>cv</span>
+<span id="cb34-24"><a href="第4次作业解答.html#cb34-24" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb34-25"><a href="第4次作业解答.html#cb34-25" aria-hidden="true" tabindex="-1"></a>  er<span class="ot">&lt;-</span><span class="fu">cbind</span>(er,<span class="fu">c</span>(er1,er2,er3))</span>
+<span id="cb34-26"><a href="第4次作业解答.html#cb34-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-27"><a href="第4次作业解答.html#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(er)<span class="ot">&lt;-</span>num</span>
+<span id="cb34-28"><a href="第4次作业解答.html#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(er)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;Chi(1)&quot;</span>,<span class="st">&quot;U(0,2)&quot;</span>,<span class="st">&quot;exp(1)&quot;</span>)</span>
+<span id="cb34-29"><a href="第4次作业解答.html#cb34-29" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(er)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">50</th>
+<th align="right">100</th>
+<th align="right">200</th>
+<th align="right">500</th>
+<th align="right">1000</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Chi(1)</td>
+<td align="right">0.0755</td>
+<td align="right">0.0673</td>
+<td align="right">0.0580</td>
+<td align="right">0.0535</td>
+<td align="right">0.0530</td>
+</tr>
+<tr class="even">
+<td align="left">U(0,2)</td>
+<td align="right">0.0529</td>
+<td align="right">0.0509</td>
+<td align="right">0.0486</td>
+<td align="right">0.0499</td>
+<td align="right">0.0532</td>
+</tr>
+<tr class="odd">
+<td align="left">exp(1)</td>
+<td align="right">0.0676</td>
+<td align="right">0.0594</td>
+<td align="right">0.0547</td>
+<td align="right">0.0553</td>
+<td align="right">0.0541</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="discussion" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Discussion</h3>
+<p>If we obtain the powers for two methods under a particular simulation setting with 10,000 experiments: say, <span class="math inline">\(0.651\)</span> for one method and <span class="math inline">\(0.676\)</span> for another method. We want to know if the powers are different at <span class="math inline">\(0.05\)</span> level.</p>
+<ul>
+<li><p>What is the corresponding hypothesis test problem?</p></li>
+<li><p>What test should we use? Z-test, two-sample t-test, paired-t test or McNemar test? Why?</p></li>
+<li><p>Please provide the least necessary information for hypothesis testing.</p></li>
+</ul>
+<p><strong>Solution.</strong></p>
+<p><strong>1.</strong> <span class="math inline">\(H_0: \text{The two methods have the same power.} \leftrightarrow H_1: \text{The two methods have different powers.}\)</span></p>
+<p><strong>2.</strong> McNemar test. Because it is equivalent to test whether the acceptance rates of the two methods are the same. Also, a contingency table can be naturally constructed as in <strong>3</strong>.</p>
+<p><strong>3.</strong> For instance, consider the following contingency table.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="第4次作业解答.html#cb35-1" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span></span>
+<span id="cb35-2"><a href="第4次作业解答.html#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">6510</span>, <span class="dv">3490</span>, <span class="dv">10000</span>, <span class="dv">6760</span>, <span class="dv">3240</span>, <span class="dv">10000</span>, <span class="dv">13270</span>, <span class="dv">6730</span>, <span class="dv">20000</span>), <span class="dv">3</span>, <span class="dv">3</span>,</span>
+<span id="cb35-3"><a href="第4次作业解答.html#cb35-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">dimnames =</span> <span class="fu">list</span>(</span>
+<span id="cb35-4"><a href="第4次作业解答.html#cb35-4" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="st">&quot;Rejected&quot;</span>, <span class="st">&quot;Accepted&quot;</span>, <span class="st">&quot;total&quot;</span>),</span>
+<span id="cb35-5"><a href="第4次作业解答.html#cb35-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">c</span>(<span class="st">&quot;method A&quot;</span>, <span class="st">&quot;method B&quot;</span>, <span class="st">&quot;total&quot;</span>)</span>
+<span id="cb35-6"><a href="第4次作业解答.html#cb35-6" aria-hidden="true" tabindex="-1"></a>         ))</span>
+<span id="cb35-7"><a href="第4次作业解答.html#cb35-7" aria-hidden="true" tabindex="-1"></a>mat</span></code></pre></div>
+<pre><code>##          method A method B total
+## Rejected     6510     6760 13270
+## Accepted     3490     3240  6730
+## total       10000    10000 20000</code></pre>
+<p>The test statistic:
+<span class="math display">\[\chi^2 = \sum_{i,j=1}^2 \frac{(n_{ij}-n_{i+} n_{+j}/n)^2}{n_{i+}n_{+j}/n} \rightarrow \chi^2_1.\]</span>
+Note that <span class="math inline">\(\chi^2 = 13.9966\)</span> and the p-value is <span class="math inline">\(P(\chi^2_1 &gt; \chi^2) = 0.0001831415 &lt; 0.05\)</span>. Therefore, we reject the null hypothesis <span class="math inline">\(H_0\)</span>, that is, the powers are different at <span class="math inline">\(0.05\)</span> level.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="第3次作业解答.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="第5次作业解答.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["CBook.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -2,6 +2,7 @@
 
 export(gibbsC)
 export(gibbsR)
+export(sim.data)
 export(vaccC)
 export(vaccR)
 import(microbenchmark)
